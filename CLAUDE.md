@@ -16,13 +16,13 @@ Following MVP advisor recommendations, this is now a **true MVP** with ~200 line
 
 **SimpleMCPManager Class** (target implementation):
 - Handles enable/disable operations by moving configs between files
-- Manages `mcp.json` (enabled) and `mcp.json.disabled` (disabled)
+- Manages `.mcp.json` (enabled) and `.mcp.json.disabled` (disabled)
 - Auto-scaffolds minimal configs on first run
 - No complex backup system - configuration preservation IS the backup
 
 **Configuration Files**:
-- `mcp.json`: Currently enabled MCP servers
-- `mcp.json.disabled`: Disabled MCP servers (preserves configuration)
+- `.mcp.json`: Currently enabled MCP servers
+- `.mcp.json.disabled`: Disabled MCP servers (preserves configuration)
 
 ### MVP Commands (4 Total)
 
@@ -77,8 +77,8 @@ deno run --allow-read --allow-write ../src/mvp/cc-mcp-mvp.ts
 ```
 
 ### Permissions Required
-- `--allow-read`: Read mcp.json configuration files
-- `--allow-write`: Write mcp.json configuration files
+- `--allow-read`: Read .mcp.json configuration files
+- `--allow-write`: Write .mcp.json configuration files
 
 ## File Structure
 
@@ -108,7 +108,7 @@ ccmcp/
 
 - **Single-file design**: All MVP functionality in `src/mvp/cc-mcp-mvp.ts` (~300 lines)
 - **Minimal dependencies**: Basic Deno with simple console output (no Cliffy for MVP)
-- **File-based state**: Just two JSON files - `mcp.json` and `mcp.json.disabled`
+- **File-based state**: Just two JSON files - `.mcp.json` and `.mcp.json.disabled`
 - **Safety-first**: Basic validation, clear error messages, restart reminders
 - **Claude Code integration**: Works with existing MCP configuration format
 

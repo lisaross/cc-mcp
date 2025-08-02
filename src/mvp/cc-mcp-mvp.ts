@@ -7,7 +7,7 @@
  * Claude Code's disable button permanently deletes MCP configurations.
  * 
  * This MVP preserves configurations by moving them between 
- * mcp.json (enabled) and mcp.json.disabled (disabled).
+ * .mcp.json (enabled) and .mcp.json.disabled (disabled).
  */
 
 interface MCPServer {
@@ -21,8 +21,8 @@ interface MCPConfig {
 }
 
 class SimpleMCPManager {
-  private enabledFile = "mcp.json";
-  private disabledFile = "mcp.json.disabled";
+  private enabledFile = ".mcp.json";
+  private disabledFile = ".mcp.json.disabled";
 
   async init(): Promise<void> {
     // Create default configs if they don't exist
@@ -36,7 +36,7 @@ class SimpleMCPManager {
         }
       };
       await this.writeConfig(this.enabledFile, enabledConfig);
-      console.log("✓ Created mcp.json with filesystem MCP enabled");
+      console.log("✓ Created .mcp.json with filesystem MCP enabled");
     }
 
     if (!await this.fileExists(this.disabledFile)) {
@@ -46,13 +46,13 @@ class SimpleMCPManager {
             command: "bunx",
             args: ["@modelcontextprotocol/server-github"],
             env: {
-              GITHUB_PERSONAL_ACCESS_TOKEN: "your_token_here"
+              GITHUB_PERSONAL_ACCESS_TOKEN: "${GITHUB_PERSONAL_ACCESS_TOKEN}"
             }
           }
         }
       };
       await this.writeConfig(this.disabledFile, disabledConfig);
-      console.log("✓ Created mcp.json.disabled with github MCP example");
+      console.log("✓ Created .mcp.json.disabled with github MCP example");
     }
   }
 
@@ -171,7 +171,10 @@ class SimpleMCPManager {
       if (error instanceof Deno.errors.NotFound) {
         return { mcpServers: {} };
       }
-      throw new Error(`Failed to read ${path}: ${error.message}`);
+      if (error instanceof SyntaxError) {
+        throw new Error(`Invalid JSON in ${path}: ${error.message}`);
+      }
+      throw new Error(`Failed to read ${path}: ${(error as Error).message}`);
     }
   }
 
@@ -180,7 +183,7 @@ class SimpleMCPManager {
       const content = JSON.stringify(config, null, 2);
       await Deno.writeTextFile(path, content);
     } catch (error) {
-      throw new Error(`Failed to write ${path}: ${error.message}`);
+      throw new Error(`Failed to write ${path}: ${(error as Error).message}`);
     }
   }
 
@@ -279,8 +282,8 @@ EXAMPLES:
   cc-mcp init           # Create example configurations
 
 FILES:
-  mcp.json              Currently enabled MCP servers
-  mcp.json.disabled     Disabled MCP servers (configurations preserved)
+  .mcp.json              Currently enabled MCP servers
+  .mcp.json.disabled     Disabled MCP servers (configurations preserved)
 
 FIRST RUN:
   Automatically creates working filesystem MCP and GitHub example.
@@ -293,11 +296,14 @@ WARNING:
 }
 
 // Error handling
-if (import.meta.main) {
+if ((import.meta as any).main) {
   try {
     await main();
   } catch (error) {
-    console.error("Error:", error.message);
+    console.error("Error:", (error as Error).message);
     Deno.exit(1);
   }
 }
+
+// Make this a module to support top-level await
+export {};
