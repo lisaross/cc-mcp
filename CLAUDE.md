@@ -4,109 +4,111 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-CC-MCP is a command-line tool for managing Model Context Protocol (MCP) servers in Claude Code projects. It provides a non-destructive alternative to Claude Code's built-in MCP management, preserving configurations when disabling MCPs instead of deleting them entirely.
+CC-MCP is a **minimal** command-line tool for managing Model Context Protocol (MCP) servers in Claude Code projects. It solves the critical problem that **Claude Code's built-in disable button permanently deletes MCP configurations**. This MVP provides basic configuration preservation, allowing users to disable MCPs without losing their setups.
 
-## Development Commands
+**Core Value:** Preserve MCP configurations when disabling them, enabling instant re-activation without reconfiguration.
 
-### Running the Tool
-```bash
-# Run the main script directly with Deno
-deno run --allow-read --allow-write cc-mcp-minimal.ts
+## MVP Architecture (True Minimal)
 
-# Install locally for system-wide usage
-deno install --allow-read --allow-write --name cc-mcp cc-mcp-minimal.ts
-
-# Common commands after installation
-cc-mcp list          # Show all MCPs and their status
-cc-mcp toggle        # Interactive checkbox interface
-cc-mcp enable <name> # Enable a specific MCP
-cc-mcp disable <name># Disable a specific MCP
-cc-mcp init          # Initialize with example configurations
-```
-
-### Testing
-Since this is a CLI tool that manages file system operations:
-```bash
-# Test in a temporary directory to avoid affecting real configs
-mkdir test-env && cd test-env
-deno run --allow-read --allow-write ../cc-mcp-minimal.ts init
-deno run --allow-read --allow-write ../cc-mcp-minimal.ts list
-```
-
-### Permissions Required
-- `--allow-read`: Read mcp.json configuration files
-- `--allow-write`: Write mcp.json configuration files and create backup directory
-
-## Architecture
+Following MVP advisor recommendations, this is now a **true MVP** with ~200 lines of code focused solely on configuration preservation.
 
 ### Core Components
 
-**MCPManager Class** (`cc-mcp-minimal.ts:179-291`): 
-- Handles all MCP configuration file operations
-- Manages enabled (mcp.json) and disabled (mcp.json.disabled) configurations
-- Provides methods for enabling/disabling MCPs while preserving configs
-
-**BackupManager Class** (`cc-mcp-minimal.ts:79-177`):
-- Automatically creates backups before any configuration changes
-- Stores backups in `./.cc-mcp/backups/` with timestamp-based naming
-- Keeps last 30 backups with auto-cleanup
-- Detects orphaned configurations (deleted via Claude Code UI)
+**SimpleMCPManager Class** (target implementation):
+- Handles enable/disable operations by moving configs between files
+- Manages `mcp.json` (enabled) and `mcp.json.disabled` (disabled)
+- Auto-scaffolds minimal configs on first run
+- No complex backup system - configuration preservation IS the backup
 
 **Configuration Files**:
 - `mcp.json`: Currently enabled MCP servers
 - `mcp.json.disabled`: Disabled MCP servers (preserves configuration)
-- `.cc-mcp/backups/`: Automatic backup storage
 
-### Key Features
+### MVP Commands (4 Total)
 
-1. **Configuration Preservation**: Unlike Claude Code's destructive disable, this tool moves MCPs between enabled/disabled states
-2. **Automatic Scaffolding**: Creates example configurations on first run
-3. **Backup & Recovery**: Automatic backups with orphan detection for configs deleted via Claude Code UI
-4. **Interactive Interface**: Checkbox-based toggle interface using Cliffy prompts
-5. **Restart Reminders**: Prominent notifications to restart Claude Code after changes
+```bash
+# Core MVP commands
+cc-mcp [list]        # Show all MCPs with status (default action)
+cc-mcp enable <name> # Enable a specific MCP (move from disabled to enabled)
+cc-mcp disable <name># Disable a specific MCP (move from enabled to disabled)  
+cc-mcp init          # Initialize with minimal example configurations
+```
 
-### Default Configurations
+### Default Configurations (Minimal)
 
-**Enabled by Default** (`cc-mcp-minimal.ts:27-34`):
-- filesystem: Safe, useful MCP for local file access
+**Enabled by Default**:
+- `filesystem`: Safe, immediately useful MCP for local file access
 
-**Disabled Examples** (`cc-mcp-minimal.ts:36-77`):
-- github, sqlite, anthropic, slack, postgres, google_drive
-- Pre-configured with placeholder values for API keys and environment variables
+**Disabled Example**:
+- `github`: Common MCP with placeholder token
 
-## Development Workflow
+### Features Cut from MVP
 
-1. **All changes preserve existing configurations** - never destructively edit
+**Removed for simplicity** (can add in v1.1+):
+- ❌ Interactive toggle mode  
+- ❌ Add command with complex prompts
+- ❌ BackupManager class with 30-file rotation
+- ❌ Doctor/recover commands
+- ❌ Batch enable-all/disable-all
+- ❌ Multiple pre-configured MCPs (just filesystem + github)
+
+## Development Workflow (MVP)
+
+1. **Preserve configurations** - never destructively edit, always move between files
 2. **Test with temporary directories** to avoid affecting real MCP configs
-3. **Use auto-scaffolding** - tool creates example configs automatically
-4. **Backup system** protects against data loss from any source
+3. **Auto-scaffold minimal configs** - tool creates working filesystem MCP on first run
+4. **Simple validation** - basic JSON checks with clear error messages
 5. **CLI-first design** - optimized for terminal workflow with Claude Code
+
+### MVP Development Commands
+
+```bash
+# Run the MVP script directly with Deno
+deno run --allow-read --allow-write cc-mcp-mvp.ts
+
+# Install locally for system-wide usage  
+deno install --allow-read --allow-write --name cc-mcp cc-mcp-mvp.ts
+
+# Test in safe environment
+mkdir test-env && cd test-env
+deno run --allow-read --allow-write ../cc-mcp-mvp.ts
+```
+
+### Permissions Required
+- `--allow-read`: Read mcp.json configuration files
+- `--allow-write`: Write mcp.json configuration files
 
 ## File Structure
 
 ```
 ccmcp/
-├── cc-mcp-minimal.ts     # Single-file implementation with full functionality
-├── docs/                 # Project documentation
-│   ├── PRD.md           # Product requirements and feature specifications
-│   ├── cc-mcp-architecture.md # Technical architecture (planned vs actual)
+├── cc-mcp-mvp.ts        # MVP implementation (~200 lines)
+├── cc-mcp-minimal.ts    # Original full-featured version (for reference)
+├── docs/                
+│   ├── MVP-PRD.md       # New MVP requirements
+│   ├── PRD.md           # Original full requirements  
 │   └── ...
 └── CLAUDE.md            # This file
 ```
 
-## Important Implementation Notes
+## MVP Implementation Notes
 
-- **Single-file design**: All functionality contained in `cc-mcp-minimal.ts` for simplicity
-- **Deno runtime**: Uses Deno with Cliffy framework for CLI interface
-- **File-based state**: No database - uses JSON files for configuration management
-- **Safety-first**: Always creates backups, validates operations, provides undo capabilities
-- **Claude Code integration**: Designed specifically for Claude Code's MCP configuration format
+- **Single-file design**: All MVP functionality in `cc-mcp-mvp.ts` (~200 lines)
+- **Minimal dependencies**: Basic Deno with simple console output (no Cliffy for MVP)
+- **File-based state**: Just two JSON files - `mcp.json` and `mcp.json.disabled`
+- **Safety-first**: Basic validation, clear error messages, restart reminders
+- **Claude Code integration**: Works with existing MCP configuration format
 
-## CLI UX Patterns
+## MVP CLI UX Patterns
 
-- Orange ASCII logo matching Claude Code branding
-- Clear visual status indicators (✓ enabled, ✗ disabled)
-- Interactive prompts with sensible defaults
-- Helpful error messages with suggested solutions
-- Consistent command aliases for speed (ls, e, d, t)
-- Prominent restart reminders after configuration changes
+- Simple console output with ✓/✗ status indicators
+- Clear success/error messages
+- Consistent command aliases (`ls`, `e`, `d`)
+- Prominent restart reminders: "⚠️ Restart Claude Code: claude -r"
+- Auto-scaffolding on first run for immediate value
+
+## Target MVP Timeline
+
+- **Day 1:** Core SimpleMCPManager class with enable/disable/list
+- **Day 2:** CLI commands, auto-scaffolding, and basic validation  
+- **Day 3:** Testing, documentation updates, and polish
