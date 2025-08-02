@@ -20,10 +20,13 @@ CC-MCP moves MCP configurations between `mcp.json` (enabled) and `mcp.json.disab
 
 ```bash
 # Install locally
-deno install --allow-read --allow-write --name cc-mcp ./cc-mcp-mvp.ts
+deno install --allow-read --allow-write --name cc-mcp ./src/mvp/cc-mcp-mvp.ts
 
 # Or run directly
-deno run --allow-read --allow-write cc-mcp-mvp.ts
+deno run --allow-read --allow-write src/mvp/cc-mcp-mvp.ts
+
+# Or use the task runner
+deno task mvp
 ```
 
 **Permissions needed:**
@@ -70,17 +73,17 @@ $ cc-mcp
 # Enable GitHub MCP (after adding your token to mcp.json.disabled)
 $ cc-mcp enable github
  Enabled github
-   Restart Claude Code: claude -r
+ï¿½  Restart Claude Code: claude -r
 
 # Later, disable for context management
 $ cc-mcp disable github
  Disabled github (configuration preserved)
-   Restart Claude Code: claude -r
+ï¿½  Restart Claude Code: claude -r
 
 # Re-enable instantly - no reconfiguration needed!
 $ cc-mcp enable github
  Enabled github
-   Restart Claude Code: claude -r
+ï¿½  Restart Claude Code: claude -r
 ```
 
 ## Key Benefits

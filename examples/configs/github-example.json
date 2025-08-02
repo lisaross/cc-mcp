@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "github": {
+      "command": "bunx",
+      "args": ["@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "your_token_here"
+      }
+    }
+  }
+}

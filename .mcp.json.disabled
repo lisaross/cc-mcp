@@ -1,0 +1,154 @@
+{
+  "mcpServers": {
+    "bright_data": {
+      "command": "npx",
+      "args": ["@brightdata/mcp-server"],
+      "env": {
+        "BRIGHT_DATA_API_KEY": "your-api-key-here"
+      }
+    },
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp@latest"]
+    },
+    "airtable": {
+      "command": "npx",
+      "args": ["-y", "airtable-mcp-server"],
+      "env": {
+        "AIRTABLE_API_KEY": "pat123.abc123-your-key-here"
+      }
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"]
+    },
+    "chart": {
+      "command": "npx",
+      "args": ["@bmacharajun/chart-mcp"],
+      "env": {
+        "CHART_OPTIONS": "default"
+      }
+    },
+    "cloudflare": {
+      "command": "npx",
+      "args": ["@cloudflare/mcp-server-cloudflare"],
+      "env": {
+        "CLOUDFLARE_API_TOKEN": "your-api-token-here"
+      }
+    },
+    "convex": {
+      "command": "npx",
+      "args": ["convex", "mcp"],
+      "env": {
+        "CONVEX_DEPLOYMENT": "your-deployment-here"
+      }
+    },
+    "coderabbit": {
+      "command": "npx",
+      "args": ["coderabbitai-mcp@latest"],
+      "env": {
+        "GITHUB_PAT": "ghp_your_token_here",
+        "CODERABBIT_API_KEY": "cr-xxxxxxxxxxxxx"
+      }
+    },
+    "elevenlabs": {
+      "command": "uvx",
+      "args": ["elevenlabs-mcp"],
+      "env": {
+        "ELEVENLABS_API_KEY": "your-api-key-here"
+      }
+    },
+    "firecrawl": {
+      "command": "npx",
+      "args": ["-y", "firecrawl-mcp"],
+      "env": {
+        "FIRECRAWL_API_KEY": "fc-your-api-key-here"
+      }
+    },
+    "github": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "your-token-here"
+      }
+    },
+    "mailgun": {
+      "command": "node",
+      "args": ["/path/to/mailgun-mcp-server/src/mailgun-mcp.js"],
+      "env": {
+        "MAILGUN_API_KEY": "your-mailgun-api-key"
+      }
+    },
+    "toolbox_databases": {
+      "command": "npx",
+      "args": ["@mcptools/mcp-toolbox-databases"],
+      "env": {
+        "DATABASE_CONNECTION": "your-connection-string"
+      }
+    },
+    "neo4j": {
+      "command": "npx",
+      "args": ["@alanse/mcp-neo4j-server"],
+      "env": {
+        "NEO4J_URI": "bolt://localhost:7687",
+        "NEO4J_USERNAME": "neo4j",
+        "NEO4J_PASSWORD": "your-password"
+      }
+    },
+    "neon": {
+      "command": "npx",
+      "args": ["-y", "@neondatabase/mcp-server-neon@latest"],
+      "env": {
+        "NEON_API_KEY": "your-api-key-here"
+      }
+    },
+    "notion": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-notion"],
+      "env": {
+        "NOTION_API_KEY": "your-api-key-here"
+      }
+    },
+    "perplexity": {
+      "command": "npx",
+      "args": ["-y", "server-perplexity-ask"],
+      "env": {
+        "PERPLEXITY_API_KEY": "your-api-key-here"
+      }
+    },
+    "sentry": {
+      "command": "npx",
+      "args": ["@sentry/mcp-server"],
+      "env": {
+        "SENTRY_API_TOKEN": "your-token-here"
+      }
+    },
+    "supabase": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@supabase/mcp-server-supabase@latest",
+        "--read-only",
+        "--project-ref=your-project-ref"
+      ],
+      "env": {
+        "SUPABASE_ACCESS_TOKEN": "your-personal-access-token"
+      }
+    },
+    "twilio": {
+      "command": "npx",
+      "args": ["@twilio/mcp-server"],
+      "env": {
+        "TWILIO_ACCOUNT_SID": "your-account-sid",
+        "TWILIO_AUTH_TOKEN": "your-auth-token"
+      }
+    },
+    "zapier": {
+      "command": "npx",
+      "args": ["@zapier/mcp-server"],
+      "env": {
+        "ZAPIER_API_KEY": "your-api-key-here"
+      }
+    }
+  }
+}

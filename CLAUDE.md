@@ -64,14 +64,16 @@ cc-mcp init          # Initialize with minimal example configurations
 
 ```bash
 # Run the MVP script directly with Deno
-deno run --allow-read --allow-write cc-mcp-mvp.ts
+deno run --allow-read --allow-write src/mvp/cc-mcp-mvp.ts
+# Or use task runner
+deno task mvp
 
 # Install locally for system-wide usage  
-deno install --allow-read --allow-write --name cc-mcp cc-mcp-mvp.ts
+deno install --allow-read --allow-write --name cc-mcp src/mvp/cc-mcp-mvp.ts
 
 # Test in safe environment
 mkdir test-env && cd test-env
-deno run --allow-read --allow-write ../cc-mcp-mvp.ts
+deno run --allow-read --allow-write ../src/mvp/cc-mcp-mvp.ts
 ```
 
 ### Permissions Required
@@ -82,18 +84,29 @@ deno run --allow-read --allow-write ../cc-mcp-mvp.ts
 
 ```
 ccmcp/
-├── cc-mcp-mvp.ts        # MVP implementation (~200 lines)
-├── cc-mcp-minimal.ts    # Original full-featured version (for reference)
+├── src/
+│   ├── mvp/
+│   │   └── cc-mcp-mvp.ts        # MVP implementation (~300 lines)
+│   └── full/
+│       └── cc-mcp-full.ts       # Full-featured version (for reference)
 ├── docs/                
-│   ├── MVP-PRD.md       # New MVP requirements
-│   ├── PRD.md           # Original full requirements  
-│   └── ...
-└── CLAUDE.md            # This file
+│   ├── product/
+│   │   ├── mvp-prd.md           # MVP requirements
+│   │   └── full-prd.md          # Full requirements  
+│   ├── user/
+│   │   └── installation.md     # User installation guide
+│   ├── developer/
+│   │   └── architecture.md     # Technical architecture
+│   └── reference/               # Reference materials
+├── examples/
+│   └── configs/                 # Sample MCP configurations
+├── deno.json                    # Deno configuration
+└── CLAUDE.md                    # This file
 ```
 
 ## MVP Implementation Notes
 
-- **Single-file design**: All MVP functionality in `cc-mcp-mvp.ts` (~200 lines)
+- **Single-file design**: All MVP functionality in `src/mvp/cc-mcp-mvp.ts` (~300 lines)
 - **Minimal dependencies**: Basic Deno with simple console output (no Cliffy for MVP)
 - **File-based state**: Just two JSON files - `mcp.json` and `mcp.json.disabled`
 - **Safety-first**: Basic validation, clear error messages, restart reminders
