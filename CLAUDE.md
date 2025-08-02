@@ -15,12 +15,14 @@ Following MVP advisor recommendations, this is now a **true MVP** with ~200 line
 ### Core Components
 
 **SimpleMCPManager Class** (target implementation):
+
 - Handles enable/disable operations by moving configs between files
 - Manages `.mcp.json` (enabled) and `.mcp.json.disabled` (disabled)
 - Auto-scaffolds minimal configs on first run
 - No complex backup system - configuration preservation IS the backup
 
 **Configuration Files**:
+
 - `.mcp.json`: Currently enabled MCP servers
 - `.mcp.json.disabled`: Disabled MCP servers (preserves configuration)
 
@@ -37,14 +39,17 @@ cc-mcp init          # Initialize with minimal example configurations
 ### Default Configurations (Minimal)
 
 **Enabled by Default**:
+
 - `filesystem`: Safe, immediately useful MCP for local file access
 
 **Disabled Example**:
+
 - `github`: Common MCP with placeholder token
 
 ### Features Cut from MVP
 
 **Removed for simplicity** (can add in v1.1+):
+
 - ❌ Interactive toggle mode  
 - ❌ Add command with complex prompts
 - ❌ BackupManager class with 30-file rotation
@@ -77,12 +82,13 @@ deno run --allow-read --allow-write ../src/mvp/cc-mcp-mvp.ts
 ```
 
 ### Permissions Required
+
 - `--allow-read`: Read .mcp.json configuration files
 - `--allow-write`: Write .mcp.json configuration files
 
 ## File Structure
 
-```
+```text
 ccmcp/
 ├── src/
 │   ├── mvp/
