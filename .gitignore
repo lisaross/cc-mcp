@@ -1,174 +1,49 @@
-# MCP Configuration (contains sensitive API keys)
-.mcp.json
-.mcp.json.disabled
+# Deno
+.deno/
+deno.lock
 
-# Environment variables (contains sensitive information)
-.env
-.env.local
-.env.production
-
-# Doppler configuration (project-specific)
-.doppler.yaml
-
-# Security - private keys and certificates
-*.key
-*.pem
-*.p12
-*.pfx
-*.crt
-*.cer
-
-# Python cache
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-
-# uv (Python package manager)
-.venv/
-uv.lock
-.mcphub/.venv/
-
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
+# Build outputs
 dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
+build/
 
-# PyInstaller
-*.manifest
-*.spec
+# Logs
+*.log
+logs/
 
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
+# Test coverage
+coverage/
 
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-.hypothesis/
-.pytest_cache/
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# IPython
-profile_default/
-ipython_config.py
-
-# pyenv
-.python-version
-
-# Celery stuff
-celerybeat-schedule
-celerybeat.pid
-
-# SageMath parsed files
-*.sage.py
-
-# Environments
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Google Cloud credentials
-service-account-key.json
-*.json.key
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 
 # Temporary files
 tmp/
 temp/
 *.tmp
+*.temp
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# Backup files
+*.backup
 *.bak
-*.swp
-*.swo
-*~
 
-# IDE files
-.vscode/
-.idea/
-*.sublime-*
-
-# MacOS
-.DS_Store
-.AppleDouble
-.LSOverride
-
-# Thumbnails
-._*
-
-# Files that might appear in the root of a volume
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.VolumeIcon.icns
-.com.apple.timemachine.donotpresent
-
-# Data files (may contain sensitive information)
-data/raw/
-datasets/
-*.csv
-*.xlsx
-*.xls
-*.pdf
-
-# Allow analysis notebooks and processed data
-!data/analysis/
-!data/processed/
-!data/analysis/*.ipynb
-!data/analysis/*.py
-!data/processed/*.json
-
-# Logs
-logs/
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# MCP server logs
-mcp_servers/*.log
-
-# MCPHub specific
-.mcphub/logs/
-.mcphub/*.log
-.mcphub/.env
-node_modules/
-bun.lockb
-package-lock.json
-yarn.lock
-
-# CodeRabbit temporary files
-coderabbit-comments.json
-
-# Generated artifacts (build outputs, reports)
-artifacts/
-!artifacts/.gitkeep
+# MCP configuration backups (if any)
+.cc-mcp/backups/
+mcp.json.backup*

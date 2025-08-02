@@ -1,0 +1,33 @@
+{
+  "name": "cc-mcp",
+  "version": "1.0.0",
+  "description": "Claude Code MCP Manager - Preserve MCP configurations when disabling",
+  "tasks": {
+    "mvp": "deno run --allow-read --allow-write src/mvp/cc-mcp-mvp.ts",
+    "full": "deno run --allow-read --allow-write src/full/cc-mcp-full.ts",
+    "test": "deno test --allow-read --allow-write tests/",
+    "lint": "deno lint src/",
+    "fmt": "deno fmt src/ docs/ examples/",
+    "check": "deno check src/**/*.ts"
+  },
+  "compilerOptions": {
+    "lib": ["deno.ns", "deno.unstable", "dom"],
+    "strict": true
+  },
+  "fmt": {
+    "include": ["src/", "docs/", "examples/"],
+    "exclude": ["dist/"],
+    "options": {
+      "lineWidth": 100,
+      "indentWidth": 2,
+      "semiColons": true
+    }
+  },
+  "lint": {
+    "include": ["src/"],
+    "exclude": ["dist/"],
+    "rules": {
+      "tags": ["recommended"]
+    }
+  }
+}

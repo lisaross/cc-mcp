@@ -1,0 +1,21 @@
+{
+  "mcpServers": {
+    "github": {
+      "command": "bunx",
+      "args": ["@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
+      }
+    }
+  },
+  "_documentation": {
+    "setup": "Before using this GitHub MCP server configuration:",
+    "steps": [
+      "1. Copy .env.mcp.example to .env.mcp: cp .env.mcp.example .env.mcp",
+      "2. Edit .env.mcp and replace GITHUB_PERSONAL_ACCESS_TOKEN with your actual GitHub PAT",
+      "3. Never commit .env.mcp to version control (it's in .gitignore)",
+      "4. Create your GitHub PAT at: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token"
+    ],
+    "security_note": "This configuration references the GITHUB_PERSONAL_ACCESS_TOKEN environment variable from .env.mcp to avoid hardcoding secrets in configuration files."
+  }
+}

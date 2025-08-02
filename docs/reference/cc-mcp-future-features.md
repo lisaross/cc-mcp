@@ -3,6 +3,7 @@
 ## Priority 1: Security Monitoring & Recovery ✅ Partially in MVP
 
 ### The Problem
+
 - Users don't know if an MCP has been compromised or has vulnerabilities
 - No central registry of MCP security issues
 - ~~Claude Code's disable button deletes configurations permanently~~ ✅ Solved in MVP
@@ -11,6 +12,7 @@
 ### Security Advisory System
 
 #### Implementation
+
 ```typescript
 interface SecurityAdvisory {
   mcp: string;
@@ -40,6 +42,7 @@ class SecurityMonitor {
 ```
 
 #### User Experience
+
 ```bash
 $ cc-mcp enable suspicious-mcp
 
@@ -58,6 +61,7 @@ Enable anyway? (not recommended) [y/N]: n
 ### Community Security Reporting
 
 #### Report Unsafe MCPs
+
 ```bash
 $ cc-mcp report postgres
 
@@ -73,6 +77,7 @@ Report an issue with 'postgres' MCP:
 ```
 
 #### Rate MCPs
+
 ```bash
 $ cc-mcp rate postgres
 
@@ -90,6 +95,7 @@ Rate 'postgres' MCP:
 ## Priority 2: Import & Settings Management
 
 ### Import from Other Projects
+
 ```bash
 # Import all MCPs from another project
 $ cc-mcp import ../web-app
@@ -130,6 +136,7 @@ Similar to Claude Code's settings hierarchy:
 ```
 
 #### Settings Hierarchy
+
 ```typescript
 class SettingsManager {
   async resolveSettings(): Promise<Settings> {
@@ -163,6 +170,7 @@ class SettingsManager {
 ```
 
 #### Profile-Based Workflows
+
 ```bash
 # Set active profile for project
 $ cc-mcp profile use production
@@ -289,6 +297,7 @@ Press 'q' to quit, 'r' to reset stats
 ## Implementation Architecture Summary
 
 ### Local Data Structure
+
 ```
 ~/.cc-mcp/
 ├── marketplace/
@@ -306,6 +315,7 @@ Press 'q' to quit, 'r' to reset stats
 ```
 
 ### Community Features
+
 - **Decentralized reviews**: Store locally, sync optionally
 - **Security reports**: Submit anonymously to central database
 - **Performance data**: Opt-in telemetry for context usage
@@ -314,12 +324,14 @@ Press 'q' to quit, 'r' to reset stats
 ## Benefits Summary
 
 ### Import & Settings
+
 - **Team consistency**: Share configurations across projects
 - **Environment management**: Different MCPs for dev/prod
 - **Quick setup**: Import working configs from other projects
 - **Template marketplace**: Start with proven combinations
 
 ### Enhanced Security
+
 - **Community-driven**: Users report issues quickly
 - **Transparent ratings**: See real usage experiences
 - **Performance awareness**: Know context costs upfront
