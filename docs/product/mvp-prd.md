@@ -22,6 +22,7 @@ CC-MCP is a **minimal** command-line tool that solves one critical problem: **Cl
 ## MVP Solution
 
 A simple CLI tool that:
+
 1. **Lists MCPs** with enabled/disabled status
 2. **Preserves configurations** by moving them between `mcp.json` and `mcp.json.disabled`
 3. **Auto-scaffolds** basic configs on first run
@@ -32,35 +33,43 @@ A simple CLI tool that:
 ## MVP Features (4 Core Commands)
 
 ### 1. List MCPs (`list`, `ls`, default action)
+
 Display all MCPs with their current status.
 
 **Acceptance Criteria:**
+
 - Shows all MCPs from both `mcp.json` and `mcp.json.disabled`
 - Visual indicators: ✓ enabled, ✗ disabled
 - Works when running `cc-mcp` with no arguments
 
 ### 2. Enable MCP (`enable <name>`, `e <name>`)
+
 Move MCP configuration from disabled to enabled state.
 
 **Acceptance Criteria:**
+
 - Moves config from `mcp.json.disabled` to `mcp.json`
 - Shows success message: "✓ Enabled {name}"
 - Shows restart reminder: "⚠️ Restart Claude Code: claude -r"
 - Handles "not found" and "already enabled" cases
 
 ### 3. Disable MCP (`disable <name>`, `d <name>`)
+
 Move MCP configuration from enabled to disabled state.
 
 **Acceptance Criteria:**
+
 - Moves config from `mcp.json` to `mcp.json.disabled`
 - Shows success message: "✓ Disabled {name}"
 - Shows restart reminder
 - Handles "not found" and "already disabled" cases
 
 ### 4. Initialize (`init`)
+
 Create default configuration files with minimal examples.
 
 **Acceptance Criteria:**
+
 - Creates `mcp.json` with filesystem MCP enabled (safe, immediately useful)
 - Creates `mcp.json.disabled` with 1-2 common examples (github)
 - Auto-runs on first use if files don't exist
@@ -69,12 +78,14 @@ Create default configuration files with minimal examples.
 ## Technical Requirements
 
 ### File Management
+
 - Read/write `mcp.json` and `mcp.json.disabled` in current directory
 - **Auto-scaffold on first run** if files don't exist
 - Preserve JSON formatting (2-space indent)
 - Handle malformed JSON gracefully with clear error messages
 
 ### User Experience
+
 - Clear success/error messages
 - Consistent command aliases (`ls`, `e`, `d`)
 - Help text (`--help`, `-h`)
@@ -82,10 +93,12 @@ Create default configuration files with minimal examples.
 - **Restart reminder** after every configuration change
 
 ### Platform Support
+
 - **macOS only for MVP** (simplified testing)
 - Built with Deno for future cross-platform capability
 
 ### Installation
+
 - Single-file Deno script
 - Install: `deno install --allow-read --allow-write --name cc-mcp ./cc-mcp.ts`
 - Permissions: read/write for JSON files only
@@ -93,6 +106,7 @@ Create default configuration files with minimal examples.
 ## Example Configurations
 
 ### Enabled by Default (`mcp.json`)
+
 ```json
 {
   "mcpServers": {
@@ -105,6 +119,7 @@ Create default configuration files with minimal examples.
 ```
 
 ### Disabled Examples (`mcp.json.disabled`)
+
 ```json
 {
   "mcpServers": {
@@ -122,6 +137,7 @@ Create default configuration files with minimal examples.
 ## User Flows
 
 ### First Time User
+
 ```
 1. User runs: cc-mcp
 2. Tool creates mcp.json (filesystem enabled) and mcp.json.disabled (github example)
@@ -130,6 +146,7 @@ Create default configuration files with minimal examples.
 ```
 
 ### Enable MCP
+
 ```
 1. User runs: cc-mcp enable github
 2. Sees: "✓ Enabled github"
@@ -138,6 +155,7 @@ Create default configuration files with minimal examples.
 ```
 
 ### Disable MCP
+
 ```
 1. User runs: cc-mcp disable github
 2. Sees: "✓ Disabled github (configuration preserved)"
@@ -155,6 +173,7 @@ Create default configuration files with minimal examples.
 ## Out of Scope for MVP
 
 **Cut from Original PRD:**
+
 - ❌ Interactive toggle mode (add in v1.1)
 - ❌ Add command with complex prompts (manual JSON editing acceptable)
 - ❌ Backup system with 30-file rotation (configuration preservation is the backup)
@@ -163,6 +182,7 @@ Create default configuration files with minimal examples.
 - ❌ 6 pre-configured MCPs (just filesystem + github example)
 
 **Future Phases:**
+
 - v1.1: Interactive toggle mode
 - v1.2: Simple add command
 - v1.3: Basic backup system
@@ -171,6 +191,7 @@ Create default configuration files with minimal examples.
 ## Implementation Architecture
 
 ### Simplified Code Structure (~200 lines)
+
 ```typescript
 // Core classes
 class SimpleMCPManager {
@@ -188,6 +209,7 @@ class SimpleMCPManager {
 ```
 
 ### Key Simplifications
+
 - **No backup rotation** - configuration preservation IS the backup
 - **No interactive prompts** - simple command-line arguments
 - **Minimal error handling** - basic validation with clear messages
@@ -200,6 +222,7 @@ class SimpleMCPManager {
 - **Day 3:** Testing, polish, and documentation
 
 **Deliverables:**
+
 1. Single TypeScript file (`cc-mcp.ts`)
 2. Updated README with MVP instructions
 3. Updated CLAUDE.md with simplified architecture
@@ -216,6 +239,7 @@ class SimpleMCPManager {
 ## Success Criteria
 
 **MVP is successful if:**
+
 1. Users can preserve MCP configurations when disabling
 2. Tool works out-of-the-box with zero configuration
 3. No more lost configurations due to Claude Code's destructive disable

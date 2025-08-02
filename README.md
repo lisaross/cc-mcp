@@ -30,6 +30,7 @@ deno task mvp
 ```
 
 **Permissions needed:**
+
 - `--allow-read`: Read MCP configuration files
 - `--allow-write`: Write MCP configuration files
 

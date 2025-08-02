@@ -1,6 +1,7 @@
 # CC-MCP Practical Development Roadmap
 
 ## Phase 1: MVP (Week 1) ✅
+
 **Goal:** Get something useful working quickly
 
 - ✅ Basic enable/disable functionality
@@ -12,6 +13,7 @@
 - ✅ Manual add command
 
 **Config format:**
+
 ```json
 {
   "mcpServers": {
@@ -24,9 +26,11 @@
 ```
 
 ## Phase 2: Security & Recovery (Week 2-3)
+
 **Goal:** Protect users from accidents and threats
 
 ### MCP Security Monitoring
+
 - Security advisory database integration
 - Check MCPs against known vulnerabilities
 - Warning system for compromised packages
@@ -34,6 +38,7 @@
 - Optional security audit on enable
 
 **Implementation:**
+
 ```typescript
 interface SecurityAdvisory {
   package: string;
@@ -56,12 +61,14 @@ async function checkSecurity(mcp: string): Promise<SecurityStatus> {
 ```
 
 ### Recovery Mechanism
+
 - Auto-backup before any changes
 - Detect when configs are missing (user used Claude Code disable)
 - Recovery command to restore from backups
 - Time-based backup retention
 
 **Commands:**
+
 ```bash
 cc-mcp recover              # Show available backups
 cc-mcp recover github       # Restore specific MCP
@@ -70,6 +77,7 @@ cc-mcp backup               # Manual backup
 ```
 
 **Auto-backup system:**
+
 ```typescript
 class BackupManager {
   private backupDir = "~/.cc-mcp/backups";
@@ -96,9 +104,11 @@ class BackupManager {
 ```
 
 ## Phase 3: In-CLI Marketplace & Research (Week 4-6)
+
 **Goal:** Complete MCP discovery without leaving terminal
 
 ### Smart MCP Discovery
+
 - Purpose-based search ("I need database access")
 - Side-by-side comparisons
 - Community ratings and reviews
@@ -106,6 +116,7 @@ class BackupManager {
 - Claude AI recommendations
 
 **Commands:**
+
 ```bash
 # Research by purpose
 cc-mcp research "database"
@@ -127,6 +138,7 @@ cc-mcp recommend --project "web-app"
 ```
 
 ### Rich MCP Information
+
 ```typescript
 interface MCPListing {
   name: string;
@@ -162,6 +174,7 @@ interface MCPListing {
 ```
 
 ### Review System
+
 ```bash
 # After using an MCP
 cc-mcp review postgres
@@ -174,6 +187,7 @@ cc-mcp review postgres
 ```
 
 ## Phase 4: Enhanced Management (Week 7-8)
+
 **Goal:** Professional-grade features
 
 - Profiles with environment support (dev/staging/prod)
@@ -183,9 +197,11 @@ cc-mcp review postgres
 - Usage analytics
 
 ## Phase 5: Advanced Security & Deployment (Week 9-12)
+
 **Goal:** Enterprise features
 
 ### Security Features
+
 - MCP sandboxing policies
 - Network restriction rules
 - Secret management integration
@@ -193,6 +209,7 @@ cc-mcp review postgres
 - Compliance reporting
 
 ### Team Features
+
 - Shared configuration repositories
 - Role-based MCP access
 - Centralized security policies
@@ -201,18 +218,21 @@ cc-mcp review postgres
 ## Key Implementation Details
 
 ### Security Advisory Sources
+
 1. **GitHub Security Advisories** - Primary source
 2. **NPM Audit Database** - For Node packages
 3. **Community Reports** - User-submitted issues
 4. **CVE Database** - For serious vulnerabilities
 
 ### Recovery Mechanism Design
+
 - Automatic backups before every change
 - Keep last 30 days of backups
 - Detect "orphaned" configs from Claude Code disable
 - One-command recovery with preview
 
 ### Marketplace Data Structure
+
 ```typescript
 // Local cache of marketplace data
 ~/.cc-mcp/
@@ -230,6 +250,7 @@ cc-mcp review postgres
 ```
 
 ### Research Algorithm
+
 ```typescript
 async function researchMCPs(purpose: string): Promise<Recommendation[]> {
   // 1. Semantic search for relevant MCPs

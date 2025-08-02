@@ -7,12 +7,14 @@
 ## Why CC-MCP Exists
 
 When you disable an MCP through Claude Code's UI, it deletes the entire configuration - including API keys, custom paths, and arguments. CC-MCP solves this by:
+
 - Moving configs to a `.disabled` file instead of deleting them
 - **Automatic backups** before every change
 - **Recovery system** to restore accidentally deleted MCPs
 - Managing context window usage effectively
 
 **Benefits:**
+
 - Preserve complex MCP configurations
 - Recover from accidental deletions
 - Manage context window usage (some MCPs like Canva consume significant space)
@@ -22,11 +24,13 @@ When you disable an MCP through Claude Code's UI, it deletes the entire configur
 ## Quick Install
 
 ### Option 1: Direct from URL (once published)
+
 ```bash
 deno install --allow-read --allow-write --name cc-mcp https://raw.githubusercontent.com/YOUR_USER/cc-mcp/main/cc-mcp.ts
 ```
 
 ### Option 2: Local Development
+
 ```bash
 # Clone/create the project
 mkdir cc-mcp && cd cc-mcp
@@ -41,6 +45,7 @@ deno run --allow-read --allow-write cc-mcp.ts list
 ```
 
 ### First Time Setup
+
 ```bash
 # Initialize with example configurations
 cc-mcp init
@@ -53,6 +58,7 @@ cc-mcp init
 ## Example Usage
 
 ### First Run Experience
+
 ```bash
 $ cc-mcp list
 Creating mcp.json with default configuration...
@@ -71,6 +77,7 @@ Creating mcp.json.disabled with example configurations...
 ```
 
 ### Basic Commands
+
 ```bash
 # List all MCPs
 cc-mcp
@@ -97,6 +104,7 @@ cc-mcp disable-all
 ### Example Workflow
 
 1. **Morning: Working on web development**
+
    ```bash
    $ cc-mcp toggle
    # Enable: filesystem, github
@@ -107,6 +115,7 @@ cc-mcp disable-all
    ```
 
 2. **Afternoon: Switching to design work**
+
    ```bash
    $ cc-mcp toggle
    # Enable: canva, filesystem
@@ -118,6 +127,7 @@ cc-mcp disable-all
    ```
 
 3. **Next day: Back to web dev**
+
    ```bash
    $ cc-mcp toggle
    # Enable: filesystem, github
@@ -127,6 +137,7 @@ cc-mcp disable-all
    ```
 
 ### Checking Current Status
+
    ```bash
    $ cc-mcp list
    
@@ -137,6 +148,7 @@ cc-mcp disable-all
    ```
 
 2. **Use interactive toggle**
+
    ```bash
    $ cc-mcp toggle
    
@@ -147,6 +159,7 @@ cc-mcp disable-all
    ```
 
 3. **Get restart reminder**
+
    ```bash
    ✓ Updated 1 MCP(s)
    
@@ -158,6 +171,7 @@ cc-mcp disable-all
 ## File Structure
 
 Your project directory should look like:
+
 ```
 your-project/
 ├── mcp.json          # Active MCP configurations
@@ -166,6 +180,7 @@ your-project/
 ```
 
 ### Example mcp.json (auto-created)
+
 ```json
 {
   "mcpServers": {
@@ -178,6 +193,7 @@ your-project/
 ```
 
 ### Example mcp.json.disabled (auto-created with common MCPs)
+
 ```json
 {
   "mcpServers": {
@@ -249,6 +265,7 @@ Note: After enabling/disabling MCPs, you'll need to quit and run `claude -r` to 
 CC-MCP automatically backs up your configurations before every change. If you accidentally use Claude Code's disable button:
 
 ### Check for Missing MCPs
+
 ```bash
 $ cc-mcp doctor
 
@@ -261,6 +278,7 @@ Run 'cc-mcp recover' to restore from backup.
 ```
 
 ### Recover Deleted Configurations
+
 ```bash
 $ cc-mcp recover
 
@@ -276,6 +294,7 @@ Recover 2 MCP(s) from backup? Y
 ```
 
 ### View Backup History
+
 ```bash
 $ cc-mcp history
 
@@ -294,6 +313,7 @@ Backup History:
 The disabled MCPs come with placeholder values that need to be configured:
 
 ### GitHub
+
 ```bash
 # Edit mcp.json.disabled and replace "your-token-here" with your GitHub PAT
 # Then enable:
@@ -301,6 +321,7 @@ cc-mcp enable github
 ```
 
 ### Anthropic
+
 ```bash
 # Add your Anthropic API key to mcp.json.disabled
 # Get key from: https://console.anthropic.com/
@@ -308,6 +329,7 @@ cc-mcp enable anthropic
 ```
 
 ### Slack
+
 ```bash
 # Configure both tokens in mcp.json.disabled:
 # - SLACK_BOT_TOKEN: Get from Slack app settings
@@ -316,6 +338,7 @@ cc-mcp enable slack
 ```
 
 ### PostgreSQL
+
 ```bash
 # Update connection string in mcp.json.disabled
 # Format: postgresql://user:password@host:port/database
@@ -327,12 +350,14 @@ cc-mcp enable postgres
 1. **Quick Toggle**: Use `cc-mcp t` for the fastest way to manage MCPs
 
 2. **Backup Configurations**: Before major changes
+
    ```bash
    cp mcp.json mcp.json.backup
    cp mcp.json.disabled mcp.json.disabled.backup
    ```
 
 3. **Check JSON Validity**: If you manually edit the files
+
    ```bash
    deno fmt --check mcp.json
    ```
@@ -340,6 +365,7 @@ cc-mcp enable postgres
 4. **Project-Specific MCPs**: Keep different mcp.json files for different projects
 
 5. **Alias for Even Faster Access**: Add to your shell config
+
    ```bash
    alias mcp="cc-mcp"
    alias mcpt="cc-mcp toggle"
@@ -348,6 +374,7 @@ cc-mcp enable postgres
 ## Future Marketplace Integration
 
 Once the marketplace is available:
+
 ```bash
 # Search for MCPs
 cc-mcp search "database"
@@ -362,14 +389,17 @@ cc-mcp add @smithery/weather-mcp --configure
 ## Troubleshooting
 
 ### "No MCP servers found"
+
 - Make sure you have `mcp.json` or `mcp.json.disabled` in current directory
 - Files can be empty initially: `{"mcpServers": {}}`
 
 ### Changes not taking effect
+
 - Always restart Claude Code after changes
 - Quit Claude Code and run `claude -r` to resume your conversation
 - MCP changes only apply after a full restart
 
 ### Permission denied
+
 - Ensure you have write permissions in the directory
 - Re-run install with proper permissions: `deno install --allow-read --allow-write ...`

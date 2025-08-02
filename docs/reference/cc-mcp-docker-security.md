@@ -3,6 +3,7 @@
 ## Overview
 
 Running MCPs in Docker containers provides:
+
 - **Isolation**: Each MCP runs in its own container
 - **Resource limits**: Control CPU/memory usage
 - **Network security**: Explicit port mapping
@@ -364,6 +365,7 @@ cc-mcp install postgres-mcp --volume ./data:/var/lib/postgresql/data
 ## Architecture Summary
 
 ### Security Benefits
+
 1. **Isolation**: Each MCP in its own container
 2. **No global pollution**: No npm globals needed
 3. **Resource limits**: Prevent runaway processes
@@ -371,12 +373,14 @@ cc-mcp install postgres-mcp --volume ./data:/var/lib/postgresql/data
 5. **Easy cleanup**: Just remove containers
 
 ### Update Benefits
+
 1. **Version control**: Git-based tracking
 2. **Rollback capability**: Keep previous images
 3. **Automated updates**: Based on policies
 4. **Testing before deploy**: Ensure updates work
 
 ### Marketplace Benefits
+
 1. **Verified packages**: Tested before installation
 2. **Dependency management**: Handle complex setups
 3. **Security scanning**: Check for vulnerabilities

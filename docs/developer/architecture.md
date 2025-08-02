@@ -1,6 +1,7 @@
 # CC-MCP Manager Architecture & Implementation Plan
 
 ## Project Structure
+
 ```
 cc-mcp/
 ├── src/
@@ -28,6 +29,7 @@ cc-mcp/
 ## Core Implementation
 
 ### 1. Configuration Manager
+
 ```typescript
 // utils/config.ts
 interface MCPConfig {
@@ -53,6 +55,7 @@ class ConfigManager {
 ```
 
 ### 2. CLI Structure with Cliffy
+
 ```typescript
 // cli.ts
 import { Command } from "https://deno.land/x/cliffy/command/mod.ts";
@@ -92,6 +95,7 @@ const cli = new Command()
 ```
 
 ### 3. Interactive Toggle Feature
+
 ```typescript
 // commands/toggle.ts
 import { Checkbox } from "https://deno.land/x/cliffy/prompt/mod.ts";
@@ -122,6 +126,7 @@ export async function toggleCommand() {
 ```
 
 ### 4. Marketplace Integration
+
 ```typescript
 // utils/marketplace.ts
 interface MarketplaceMCP {
@@ -144,6 +149,7 @@ class Marketplace {
 ## Key Features Implementation
 
 ### 1. Restart Reminder
+
 ```typescript
 function showRestartReminder() {
   console.log(colors.yellow("\n⚠️  Configuration changed!"));
@@ -153,6 +159,7 @@ function showRestartReminder() {
 ```
 
 ### 2. Configuration Validation
+
 ```typescript
 // utils/validator.ts
 function validateMCPConfig(config: unknown): config is MCPServer {
@@ -170,6 +177,7 @@ function validateMCPConfig(config: unknown): config is MCPServer {
 ```
 
 ### 3. Profile Management
+
 ```typescript
 // Store profiles in ~/.cc-mcp/profiles/
 class ProfileManager {
@@ -191,6 +199,7 @@ class ProfileManager {
 ## Visual Design with Cliffy
 
 ### Beautiful List Output
+
 ```typescript
 function formatMCPList(mcps: MCPInfo[]) {
   const table = new Table()
@@ -207,6 +216,7 @@ function formatMCPList(mcps: MCPInfo[]) {
 ```
 
 ### Interactive Prompts
+
 ```typescript
 // Beautiful confirmation prompts
 const confirm = await Confirm.prompt({
@@ -224,11 +234,13 @@ spinner.stop();
 ## Installation & Usage
 
 ### Installation
+
 ```bash
 deno install --allow-read --allow-write --allow-net --name cc-mcp https://raw.githubusercontent.com/user/cc-mcp/main/cli.ts
 ```
 
 ### Basic Usage
+
 ```bash
 # Initialize with examples (first time)
 cc-mcp init
