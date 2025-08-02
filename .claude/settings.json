@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(markdownlint:*)",
+      "Bash(yamllint:*)"
+    ],
+    "deny": [
+      "Bash(git push:*)"
+    ]
+  }
+}
