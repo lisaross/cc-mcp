@@ -89,7 +89,7 @@ deno run --allow-read --allow-write ../src/mvp/cc-mcp-mvp.ts
 ## File Structure
 
 ```text
-ccmcp/
+cc-mcp/
 ├── src/
 │   ├── mvp/
 │   │   └── cc-mcp-mvp.ts        # MVP implementation (~300 lines)
@@ -128,6 +128,43 @@ ccmcp/
 
 ## Target MVP Timeline
 
-- **Day 1:** Core SimpleMCPManager class with enable/disable/list
-- **Day 2:** CLI commands, auto-scaffolding, and basic validation  
-- **Day 3:** Testing, documentation updates, and polish
+- **Day 1:** Core SimpleMCPManager class with enable/disable/list ✅
+- **Day 2:** CLI commands, auto-scaffolding, and basic validation ✅
+- **Day 3:** Testing, documentation updates, and polish ✅
+
+## Post-MVP: Claude Code Integration Strategy
+
+**CRITICAL INSIGHT**: CC-MCP only provides value if Claude Code environments know to use it instead of the built-in disable button. This is the #1 priority for post-MVP development.
+
+### Phase 1: Claude Code Integration (Priority 1)
+
+**Goal**: Every CC-MCP installation results in Claude Code environments that automatically use CC-MCP for MCP management.
+
+**Key Features**:
+- `cc-mcp setup-claude-integration` - Interactive wizard that configures CLAUDE.md files
+- Auto-detection of Claude Code projects and integration status  
+- CLAUDE.md templates with CC-MCP usage instructions
+- Integration verification and health checks
+- Migration from manual MCP management patterns
+
+**Success Criteria**: Users install CC-MCP once and never accidentally use Claude Code's destructive disable button again.
+
+### Implementation Approach
+
+**Integration Commands**:
+- `cc-mcp setup-claude-integration` - Setup wizard for Claude Code integration
+- `cc-mcp check-claude-integration` - Verify integration is working
+- `cc-mcp generate-claude-template` - Create CLAUDE.md templates
+- `cc-mcp migrate-claude-setup` - Migrate existing manual MCP management
+
+**CLAUDE.md Templates**:
+- Global template (`~/.claude/CLAUDE.md`) with CC-MCP usage patterns
+- Project-specific templates with current MCP context
+- Backup and recovery instructions for CLAUDE.md files
+- Integration troubleshooting guidance
+
+**Auto-Detection**:
+- Detect Claude Code projects (look for `.claude/` directory)
+- Check for existing CLAUDE.md files and CC-MCP instructions
+- Warn when integration is missing or broken
+- Suggest setup steps when running in unintegrated projects

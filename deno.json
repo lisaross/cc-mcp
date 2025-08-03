@@ -2,6 +2,9 @@
   "name": "cc-mcp",
   "version": "1.0.0",
   "description": "Claude Code MCP Manager - Preserve MCP configurations when disabling",
+  "exports": {
+    ".": "./src/mvp/cc-mcp-mvp.ts"
+  },
   "tasks": {
     "mvp": "deno run --allow-read --allow-write src/mvp/cc-mcp-mvp.ts",
     "full": "deno run --allow-read --allow-write src/full/cc-mcp-full.ts",

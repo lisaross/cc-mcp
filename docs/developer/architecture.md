@@ -236,7 +236,7 @@ spinner.stop();
 ### Installation
 
 ```bash
-deno install --allow-read --allow-write --allow-net --name cc-mcp https://raw.githubusercontent.com/user/cc-mcp/main/cli.ts
+deno install --allow-read --allow-write --allow-net --name cc-mcp https://raw.githubusercontent.com/lisaross/cc-mcp/main/src/mvp/cc-mcp-mvp.ts
 ```
 
 ### Basic Usage

@@ -22,8 +22,8 @@ CC-MCP moves MCP configurations between `mcp.json` (enabled) and `mcp.json.disab
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/ccmcp.git
-cd ccmcp
+git clone https://github.com/lisaross/cc-mcp.git
+cd cc-mcp
 
 # Install globally  
 deno install --global --allow-read --allow-write --name cc-mcp --force src/mvp/cc-mcp-mvp.ts
@@ -39,8 +39,8 @@ cc-mcp --help
 
 ```bash
 # Clone and run without installation
-git clone https://github.com/your-username/ccmcp.git
-cd ccmcp
+git clone https://github.com/lisaross/cc-mcp.git
+cd cc-mcp
 
 # Run directly
 deno run --allow-read --allow-write src/mvp/cc-mcp-mvp.ts
@@ -149,7 +149,7 @@ Future versions will add more features based on user feedback.
 
 ## Contributing
 
-Found a bug or want a feature? [Open an issue](https://github.com/your-username/ccmcp/issues).
+Found a bug or want a feature? [Open an issue](https://github.com/lisaross/cc-mcp/issues).
 
 This project follows MVP principles - we ship simple, working solutions and iterate based on real user needs.
 

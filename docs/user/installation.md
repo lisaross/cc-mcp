@@ -26,7 +26,7 @@ When you disable an MCP through Claude Code's UI, it deletes the entire configur
 ### Option 1: Direct from URL (once published)
 
 ```bash
-deno install --allow-read --allow-write --name cc-mcp https://raw.githubusercontent.com/YOUR_USER/cc-mcp/main/cc-mcp.ts
+deno install --allow-read --allow-write --name cc-mcp https://raw.githubusercontent.com/lisaross/cc-mcp/main/src/mvp/cc-mcp-mvp.ts
 ```
 
 ### Option 2: Local Development
