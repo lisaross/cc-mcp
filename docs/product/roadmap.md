@@ -20,7 +20,7 @@
 - [ ] Add LICENSE file (MIT or Apache 2.0 recommended)
 - [ ] Create GitHub repository and make public
 - [ ] Add GitHub release/tag for v1.0.0
-- [ ] Optional: Submit to Deno Land registry (https://deno.land/x)
+- [ ] Optional: Submit to Deno Land registry (<https://deno.land/x>)
 - [ ] Optional: Create installation script for easier setup
 - [ ] Verify no sensitive information in public files
 
