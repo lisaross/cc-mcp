@@ -53,14 +53,13 @@
         "CONVEX_DEPLOYMENT": "${CONVEX_DEPLOYMENT}"
       }
     },
-    "coderabbit": {
+     "coderabbitai": {
       "command": "npx",
       "args": [
         "coderabbitai-mcp@latest"
       ],
       "env": {
-        "GITHUB_PAT": "${GITHUB_PAT}",
-        "CODERABBIT_API_KEY": "${CODERABBIT_API_KEY}"
+        "GITHUB_PAT": "${GITHUB_PAT}"
       }
     },
     "elevenlabs": {
@@ -180,13 +179,14 @@
         "ZAPIER_API_KEY": "${ZAPIER_API_KEY}"
       }
     },
-    "github": {
+     "github": {
       "command": "npx",
       "args": [
+        "-y",
         "@modelcontextprotocol/server-github"
       ],
       "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PAT}"
       }
     },
     "context7": {
