@@ -105,17 +105,17 @@ $ cc-mcp
 # Enable GitHub MCP (after adding your token to mcp.json.disabled)
 $ cc-mcp enable github
  Enabled github
-�  Restart Claude Code: claude -r
+�  Restart Claude Code: claude -c
 
 # Later, disable for context management
 $ cc-mcp disable github
  Disabled github (configuration preserved)
-�  Restart Claude Code: claude -r
+�  Restart Claude Code: claude -c
 
 # Re-enable instantly - no reconfiguration needed!
 $ cc-mcp enable github
  Enabled github
-�  Restart Claude Code: claude -r
+�  Restart Claude Code: claude -c
 ```
 
 **Key Point:** The configuration is preserved in `.mcp.json.disabled`, so re-enabling requires zero setup.

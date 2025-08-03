@@ -50,7 +50,7 @@ Move MCP configuration from disabled to enabled state.
 
 - Moves config from `mcp.json.disabled` to `mcp.json`
 - Shows success message: "✓ Enabled {name}"
-- Shows restart reminder: "⚠️ Restart Claude Code: claude -r"
+- Shows restart reminder: "⚠️ Restart Claude Code: claude -c"
 - Handles "not found" and "already enabled" cases
 
 ### 3. Disable MCP (`disable <name>`, `d <name>`)
@@ -150,7 +150,7 @@ Create default configuration files with minimal examples.
 ```
 1. User runs: cc-mcp enable github
 2. Sees: "✓ Enabled github"
-3. Sees: "⚠️ Restart Claude Code: claude -r"
+3. Sees: "⚠️ Restart Claude Code: claude -c"
 4. User restarts Claude Code
 ```
 

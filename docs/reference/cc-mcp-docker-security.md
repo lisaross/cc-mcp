@@ -180,7 +180,7 @@ class UpdateManager {
   
   async showRestartInstructions() {
     console.log("Please restart Claude Code for changes to take effect.");
-    console.log("Quit Claude Code and run: claude -r to resume");
+    console.log("Quit Claude Code and run: claude -c to resume");
   }
 }
 ```

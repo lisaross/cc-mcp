@@ -137,7 +137,7 @@ After any configuration change, display a prominent reminder.
 **Acceptance Criteria:**
 
 - Yellow warning icon and text
-- Clear instructions: "Quit Claude Code and run: claude -r to resume"
+- Clear instructions: "Quit Claude Code and run: claude -c to resume"
 - Appears after enable, disable, toggle operations
 - Not shown if no changes were made
 
@@ -236,8 +236,8 @@ The following features are NOT included in v1.0.0:
 3. Uses space to toggle selections
 4. Presses Enter to confirm
 5. Sees success message with count of changes
-6. Sees restart reminder with claude -r command
-7. Quits Claude Code and runs: claude -r
+6. Sees restart reminder with claude -c command
+7. Quits Claude Code and runs: claude -c
 ```
 
 ### Quick Enable Flow
@@ -246,7 +246,7 @@ The following features are NOT included in v1.0.0:
 1. User runs: cc-mcp enable github
 2. Sees: "✓ Enabled github"
 3. Sees restart reminder
-4. Quits Claude Code and runs: claude -r
+4. Quits Claude Code and runs: claude -c
 ```
 
 ### Add New MCP Flow
@@ -257,7 +257,7 @@ The following features are NOT included in v1.0.0:
 3. MCP added to mcp.json.disabled
 4. User runs: cc-mcp enable weather
 5. Sees restart reminder
-6. Quits Claude Code and runs: claude -r
+6. Quits Claude Code and runs: claude -c
 ```
 
 ## Success Metrics

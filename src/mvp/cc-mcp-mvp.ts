@@ -189,7 +189,7 @@ class SimpleMCPManager {
 
   private showRestartReminder(): void {
     console.log("\n⚠️  Restart Claude Code for changes to take effect:");
-    console.log("   claude -r");
+    console.log("   claude -c");
     console.log();
   }
 }

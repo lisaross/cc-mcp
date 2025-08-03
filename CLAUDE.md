@@ -123,7 +123,7 @@ cc-mcp/
 - Simple console output with ✓/✗ status indicators
 - Clear success/error messages
 - Consistent command aliases (`ls`, `e`, `d`)
-- Prominent restart reminders: "⚠️ Restart Claude Code: claude -r"
+- Prominent restart reminders: "⚠️ Restart Claude Code: claude -c"
 - Auto-scaffolding on first run for immediate value
 
 ## Target MVP Timeline
