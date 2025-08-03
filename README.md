@@ -18,11 +18,31 @@ CC-MCP moves MCP configurations between `mcp.json` (enabled) and `mcp.json.disab
 
 ## Installation
 
-```bash
-# Install locally
-deno install --allow-read --allow-write --name cc-mcp ./src/mvp/cc-mcp-mvp.ts
+### Global Installation (Recommended)
 
-# Or run directly
+```bash
+# Clone the repository
+git clone https://github.com/your-username/ccmcp.git
+cd ccmcp
+
+# Install globally  
+deno install --global --allow-read --allow-write --name cc-mcp --force src/mvp/cc-mcp-mvp.ts
+
+# Add to PATH (if needed)
+export PATH="/Users/$USER/.deno/bin:$PATH"
+
+# Test installation
+cc-mcp --help
+```
+
+### Alternative: Run Directly
+
+```bash
+# Clone and run without installation
+git clone https://github.com/your-username/ccmcp.git
+cd ccmcp
+
+# Run directly
 deno run --allow-read --allow-write src/mvp/cc-mcp-mvp.ts
 
 # Or use the task runner
@@ -33,6 +53,16 @@ deno task mvp
 
 - `--allow-read`: Read MCP configuration files
 - `--allow-write`: Write MCP configuration files
+
+### ⚠️ Important: Claude Code Restart Requirement
+
+**Add this to your global Claude Code memory** (`~/.claude/CLAUDE.md`):
+
+```markdown
+## CC-MCP Usage Notes
+- When CC-MCP shows "⚠️ Restart Claude Code for changes to take effect:", pause and let the user restart Claude Code before continuing
+- MCP changes only take effect after Claude Code restarts
+```
 
 ## Usage
 
@@ -86,6 +116,8 @@ $ cc-mcp enable github
  Enabled github
 �  Restart Claude Code: claude -r
 ```
+
+**Key Point:** The configuration is preserved in `.mcp.json.disabled`, so re-enabling requires zero setup.
 
 ## Key Benefits
 
