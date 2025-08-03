@@ -6,6 +6,25 @@
         "@modelcontextprotocol/server-filesystem",
         "./"
       ]
+    },
+    "github": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PAT}"
+      }
+    },
+    "coderabbitai": {
+      "command": "npx",
+      "args": [
+        "coderabbitai-mcp@latest"
+      ],
+      "env": {
+        "GITHUB_PAT": "${GITHUB_PAT}"
+      }
     }
   }
 }
