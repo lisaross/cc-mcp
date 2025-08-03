@@ -296,7 +296,7 @@ function showRestartReminder() {
   console.log();
   console.log(colors.yellow("⚠️  Configuration changed!"));
   console.log(colors.yellow("Please restart Claude Code for changes to take effect."));
-  console.log(colors.dim("Quit Claude Code and run: ") + colors.cyan("claude -r") + colors.dim(" to resume"));
+  console.log(colors.dim("Quit Claude Code and run: ") + colors.cyan("claude -c") + colors.dim(" to resume"));
   console.log();
 }
 

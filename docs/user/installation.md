@@ -26,7 +26,7 @@ When you disable an MCP through Claude Code's UI, it deletes the entire configur
 ### Option 1: Direct from URL (once published)
 
 ```bash
-deno install --allow-read --allow-write --name cc-mcp https://raw.githubusercontent.com/YOUR_USER/cc-mcp/main/cc-mcp.ts
+deno install --allow-read --allow-write --name cc-mcp https://raw.githubusercontent.com/lisaross/cc-mcp/main/src/mvp/cc-mcp-mvp.ts
 ```
 
 ### Option 2: Local Development
@@ -111,7 +111,7 @@ cc-mcp disable-all
    # Disable: canva, database, slack
    
    # Restart Claude Code:
-   $ claude -r
+   $ claude -c
    ```
 
 2. **Afternoon: Switching to design work**
@@ -123,7 +123,7 @@ cc-mcp disable-all
    # (Frees up context window from unused MCPs)
    
    # Restart to apply changes:
-   $ claude -r
+   $ claude -c
    ```
 
 3. **Next day: Back to web dev**
@@ -133,7 +133,7 @@ cc-mcp disable-all
    # Enable: filesystem, github
    # All your GitHub tokens and configs are preserved!
    
-   $ claude -r
+   $ claude -c
    ```
 
 ### Checking Current Status
@@ -165,7 +165,7 @@ cc-mcp disable-all
    
    ⚠️  Configuration changed!
    Please restart Claude Code for changes to take effect.
-   Quit Claude Code and run: claude -r to resume
+   Quit Claude Code and run: claude -c to resume
    ```
 
 ## File Structure
@@ -248,17 +248,17 @@ When working with Claude inside Claude Code, you can use cc-mcp commands directl
 ```
 Claude: "I need to enable the GitHub MCP to help with your repository"
 > cc-mcp enable github
-> claude -r
+> claude -c
 
 Claude: "Let me check which MCPs are available"
 > cc-mcp list
 
 Claude: "I'll help you configure the right MCPs for this project"
 > cc-mcp toggle
-> claude -r
+> claude -c
 ```
 
-Note: After enabling/disabling MCPs, you'll need to quit and run `claude -r` to resume with the new configuration.
+Note: After enabling/disabling MCPs, you'll need to quit and run `claude -c` to resume with the new configuration.
 
 ## Backup & Recovery Features
 
@@ -396,7 +396,7 @@ cc-mcp add @smithery/weather-mcp --configure
 ### Changes not taking effect
 
 - Always restart Claude Code after changes
-- Quit Claude Code and run `claude -r` to resume your conversation
+- Quit Claude Code and run `claude -c` to resume your conversation
 - MCP changes only apply after a full restart
 
 ### Permission denied

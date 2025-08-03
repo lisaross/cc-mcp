@@ -12,6 +12,24 @@
 - ✅ Auto-scaffold with examples
 - ✅ Manual add command
 
+### Phase 1.1: Public Deployment Preparation 📋
+
+**Goal:** Make MVP ready for public release
+
+- [ ] Update GitHub URLs in README.md (currently has placeholder)
+- [ ] Add LICENSE file (MIT or Apache 2.0 recommended)
+- [ ] Create GitHub repository and make public
+- [ ] Add GitHub release/tag for v1.0.0
+- [ ] Optional: Submit to Deno Land registry (<https://deno.land/x>)
+- [ ] Optional: Create installation script for easier setup
+- [ ] Verify no sensitive information in public files
+
+**Distribution Options:**
+
+1. **GitHub Release** (Simplest): Users clone and install locally
+2. **Deno Land** (Professional): `deno install` from registry
+3. **NPM/JSR** (Future): Broader Node.js ecosystem reach
+
 **Config format:**
 
 ```json

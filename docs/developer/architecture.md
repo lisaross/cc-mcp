@@ -154,7 +154,7 @@ class Marketplace {
 function showRestartReminder() {
   console.log(colors.yellow("\n⚠️  Configuration changed!"));
   console.log(colors.yellow("Please restart Claude Code for changes to take effect."));
-  console.log(colors.dim("Quit Claude Code and run: ") + colors.cyan("claude -r") + colors.dim(" to resume"));
+  console.log(colors.dim("Quit Claude Code and run: ") + colors.cyan("claude -c") + colors.dim(" to resume"));
 }
 ```
 
@@ -236,7 +236,7 @@ spinner.stop();
 ### Installation
 
 ```bash
-deno install --allow-read --allow-write --allow-net --name cc-mcp https://raw.githubusercontent.com/user/cc-mcp/main/cli.ts
+deno install --allow-read --allow-write --allow-net --name cc-mcp https://raw.githubusercontent.com/lisaross/cc-mcp/main/src/mvp/cc-mcp-mvp.ts
 ```
 
 ### Basic Usage
@@ -265,7 +265,7 @@ cc-mcp profile load "data-science"
 
 ## Future Enhancements
 
-1. **Auto-restart** - Possibly automate `claude -r` command after changes
+1. **Auto-restart** - Possibly automate `claude -c` command after changes
 2. **Dependency Management** - Handle MCP dependencies
 3. **Version Control** - Track MCP versions and updates
 4. **Import/Export** - Share configurations with team

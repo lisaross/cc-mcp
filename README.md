@@ -18,11 +18,31 @@ CC-MCP moves MCP configurations between `mcp.json` (enabled) and `mcp.json.disab
 
 ## Installation
 
-```bash
-# Install locally
-deno install --allow-read --allow-write --name cc-mcp ./src/mvp/cc-mcp-mvp.ts
+### Global Installation (Recommended)
 
-# Or run directly
+```bash
+# Clone the repository
+git clone https://github.com/lisaross/cc-mcp.git
+cd cc-mcp
+
+# Install globally  
+deno install --global --allow-read --allow-write --name cc-mcp --force src/mvp/cc-mcp-mvp.ts
+
+# Add to PATH (if needed)
+export PATH="/Users/$USER/.deno/bin:$PATH"
+
+# Test installation
+cc-mcp --help
+```
+
+### Alternative: Run Directly
+
+```bash
+# Clone and run without installation
+git clone https://github.com/lisaross/cc-mcp.git
+cd cc-mcp
+
+# Run directly
 deno run --allow-read --allow-write src/mvp/cc-mcp-mvp.ts
 
 # Or use the task runner
@@ -33,6 +53,17 @@ deno task mvp
 
 - `--allow-read`: Read MCP configuration files
 - `--allow-write`: Write MCP configuration files
+
+### ⚠️ Important: Claude Code Restart Requirement
+
+**Add this to your global Claude Code memory** (`~/.claude/CLAUDE.md`):
+
+```markdown
+## CC-MCP Usage Notes
+- When CC-MCP shows "⚠️ Restart Claude Code for changes to take effect:", inform the user that a restart is required before MCP changes take effect
+- If no restart occurs within 30 seconds, continue with a warning that MCP changes may not be active
+- MCP changes only take effect after Claude Code restarts
+```
 
 ## Usage
 
@@ -74,18 +105,20 @@ $ cc-mcp
 # Enable GitHub MCP (after adding your token to mcp.json.disabled)
 $ cc-mcp enable github
  Enabled github
-�  Restart Claude Code: claude -r
+�  Restart Claude Code: claude -c
 
 # Later, disable for context management
 $ cc-mcp disable github
  Disabled github (configuration preserved)
-�  Restart Claude Code: claude -r
+�  Restart Claude Code: claude -c
 
 # Re-enable instantly - no reconfiguration needed!
 $ cc-mcp enable github
  Enabled github
-�  Restart Claude Code: claude -r
+�  Restart Claude Code: claude -c
 ```
+
+**Key Point:** The configuration is preserved in `.mcp.json.disabled`, so re-enabling requires zero setup.
 
 ## Key Benefits
 
@@ -117,7 +150,7 @@ Future versions will add more features based on user feedback.
 
 ## Contributing
 
-Found a bug or want a feature? [Open an issue](https://github.com/your-username/ccmcp/issues).
+Found a bug or want a feature? [Open an issue](https://github.com/lisaross/cc-mcp/issues).
 
 This project follows MVP principles - we ship simple, working solutions and iterate based on real user needs.
 
