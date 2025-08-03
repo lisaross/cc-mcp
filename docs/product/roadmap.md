@@ -25,6 +25,7 @@
 - [ ] Verify no sensitive information in public files
 
 **Distribution Options:**
+
 1. **GitHub Release** (Simplest): Users clone and install locally
 2. **Deno Land** (Professional): `deno install` from registry
 3. **NPM/JSR** (Future): Broader Node.js ecosystem reach

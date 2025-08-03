@@ -141,6 +141,7 @@ cc-mcp/
 **Goal**: Every CC-MCP installation results in Claude Code environments that automatically use CC-MCP for MCP management.
 
 **Key Features**:
+
 - `cc-mcp setup-claude-integration` - Interactive wizard that configures CLAUDE.md files
 - Auto-detection of Claude Code projects and integration status  
 - CLAUDE.md templates with CC-MCP usage instructions
@@ -152,18 +153,21 @@ cc-mcp/
 ### Implementation Approach
 
 **Integration Commands**:
+
 - `cc-mcp setup-claude-integration` - Setup wizard for Claude Code integration
 - `cc-mcp check-claude-integration` - Verify integration is working
 - `cc-mcp generate-claude-template` - Create CLAUDE.md templates
 - `cc-mcp migrate-claude-setup` - Migrate existing manual MCP management
 
 **CLAUDE.md Templates**:
+
 - Global template (`~/.claude/CLAUDE.md`) with CC-MCP usage patterns
 - Project-specific templates with current MCP context
 - Backup and recovery instructions for CLAUDE.md files
 - Integration troubleshooting guidance
 
 **Auto-Detection**:
+
 - Detect Claude Code projects (look for `.claude/` directory)
 - Check for existing CLAUDE.md files and CC-MCP instructions
 - Warn when integration is missing or broken

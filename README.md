@@ -60,7 +60,8 @@ deno task mvp
 
 ```markdown
 ## CC-MCP Usage Notes
-- When CC-MCP shows "⚠️ Restart Claude Code for changes to take effect:", pause and let the user restart Claude Code before continuing
+- When CC-MCP shows "⚠️ Restart Claude Code for changes to take effect:", inform the user that a restart is required before MCP changes take effect
+- If no restart occurs within 30 seconds, continue with a warning that MCP changes may not be active
 - MCP changes only take effect after Claude Code restarts
 ```
 
