@@ -2,11 +2,11 @@
 
 /**
  * CC-MCP MVP: Claude Code MCP Manager
- * 
+ *
  * A minimal tool that solves one critical problem:
  * Claude Code's disable button permanently deletes MCP configurations.
- * 
- * This MVP preserves configurations by moving them between 
+ *
+ * This MVP preserves configurations by moving them between
  * .mcp.json (enabled) and .mcp.json.disabled (disabled).
  */
 
@@ -31,9 +31,9 @@ class SimpleMCPManager {
         mcpServers: {
           filesystem: {
             command: "bunx",
-            args: ["@modelcontextprotocol/server-filesystem", "./"]
-          }
-        }
+            args: ["@modelcontextprotocol/server-filesystem", "./"],
+          },
+        },
       };
       await this.writeConfig(this.enabledFile, enabledConfig);
       console.log("✓ Created .mcp.json with filesystem MCP enabled");
@@ -46,10 +46,10 @@ class SimpleMCPManager {
             command: "bunx",
             args: ["@modelcontextprotocol/server-github"],
             env: {
-              GITHUB_PERSONAL_ACCESS_TOKEN: "${GITHUB_PERSONAL_ACCESS_TOKEN}"
-            }
-          }
-        }
+              GITHUB_PERSONAL_ACCESS_TOKEN: "${GITHUB_PERSONAL_ACCESS_TOKEN}",
+            },
+          },
+        },
       };
       await this.writeConfig(this.disabledFile, disabledConfig);
       console.log("✓ Created .mcp.json.disabled with github MCP example");
@@ -58,7 +58,7 @@ class SimpleMCPManager {
 
   async list(): Promise<void> {
     await this.ensureInitialized();
-    
+
     const enabled = await this.readConfig(this.enabledFile);
     const disabled = await this.readConfig(this.disabledFile);
 
@@ -68,7 +68,7 @@ class SimpleMCPManager {
     // Show enabled MCPs
     const enabledNames = Object.keys(enabled.mcpServers);
     if (enabledNames.length > 0) {
-      enabledNames.forEach(name => {
+      enabledNames.forEach((name) => {
         console.log(`✓ ${name}`);
       });
     }
@@ -76,7 +76,7 @@ class SimpleMCPManager {
     // Show disabled MCPs
     const disabledNames = Object.keys(disabled.mcpServers);
     if (disabledNames.length > 0) {
-      disabledNames.forEach(name => {
+      disabledNames.forEach((name) => {
         console.log(`✗ ${name}`);
       });
     }
@@ -296,7 +296,7 @@ WARNING:
 }
 
 // Error handling
-if ((import.meta as any).main) {
+if ((import.meta as { main?: boolean }).main) {
   try {
     await main();
   } catch (error) {

@@ -5,7 +5,7 @@
 **Goal:** Get something useful working quickly
 
 - ✅ Basic enable/disable functionality
-- ✅ Interactive toggle mode  
+- ✅ Interactive toggle mode
 - ✅ List with status
 - ✅ Restart reminders
 - ✅ Beautiful CLI with Cliffy
@@ -69,9 +69,9 @@ interface SecurityAdvisory {
 
 async function checkSecurity(mcp: string): Promise<SecurityStatus> {
   const advisories = await fetchSecurityAdvisories();
-  const issues = advisories.filter(a => a.package === mcp);
-  
-  if (issues.some(i => i.severity === "critical")) {
+  const issues = advisories.filter((a) => a.package === mcp);
+
+  if (issues.some((i) => i.severity === "critical")) {
     console.log(colors.red("⚠️  CRITICAL SECURITY ISSUE DETECTED"));
     // Block enable unless --force flag used
   }
@@ -99,24 +99,24 @@ cc-mcp backup               # Manual backup
 ```typescript
 class BackupManager {
   private backupDir = "~/.cc-mcp/backups";
-  
+
   async createBackup(): Promise<string> {
     const timestamp = new Date().toISOString();
     const backupPath = `${this.backupDir}/${timestamp}`;
-    
+
     // Copy both files
     await Deno.copyFile("mcp.json", `${backupPath}/mcp.json`);
     await Deno.copyFile("mcp.json.disabled", `${backupPath}/mcp.json.disabled`);
-    
+
     return timestamp;
   }
-  
+
   async detectMissingMCPs(): Promise<string[]> {
     const lastBackup = await this.getLatestBackup();
     const current = await this.getCurrentMCPs();
-    
+
     // Find MCPs that existed in backup but not in current
-    return lastBackup.filter(mcp => !current.includes(mcp));
+    return lastBackup.filter((mcp) => !current.includes(mcp));
   }
 }
 ```
@@ -164,30 +164,30 @@ interface MCPListing {
   category: string[];
   author: string;
   verified: boolean;
-  
+
   // Security
   lastAudit: Date;
   knownIssues: SecurityAdvisory[];
-  
+
   // Performance
   contextUsage: "low" | "medium" | "high";
   startupTime: number;
-  
+
   // Community
   rating: number;
   reviews: number;
   weeklyDownloads: number;
-  
+
   // Comparisons
   alternatives: string[];
   prosVsCons: {
     pros: string[];
     cons: string[];
   };
-  
+
   // Integration
   commonPairings: string[]; // MCPs often used together
-  conflicts: string[];      // MCPs that conflict
+  conflicts: string[]; // MCPs that conflict
 }
 ```
 
@@ -273,19 +273,19 @@ cc-mcp review postgres
 async function researchMCPs(purpose: string): Promise<Recommendation[]> {
   // 1. Semantic search for relevant MCPs
   const candidates = await searchByPurpose(purpose);
-  
+
   // 2. Score based on multiple factors
-  const scored = candidates.map(mcp => ({
+  const scored = candidates.map((mcp) => ({
     ...mcp,
     score: calculateScore(mcp, {
       security: mcp.knownIssues.length === 0 ? 1.0 : 0.5,
       popularity: Math.log(mcp.weeklyDownloads) / 10,
       rating: mcp.rating / 5,
       contextEfficiency: mcp.contextUsage === "low" ? 1.0 : 0.7,
-      maintenance: daysSinceLastUpdate(mcp) < 30 ? 1.0 : 0.5
-    })
+      maintenance: daysSinceLastUpdate(mcp) < 30 ? 1.0 : 0.5,
+    }),
   }));
-  
+
   // 3. Generate comparison matrix
   return scored.sort((a, b) => b.score - a.score);
 }

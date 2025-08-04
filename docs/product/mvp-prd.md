@@ -2,22 +2,28 @@
 
 ## Product Overview
 
-**Product Name:** CC-MCP (Claude Code MCP Manager)  
-**Version:** 1.0.0 (True MVP)  
-**Platform:** Command Line Interface (CLI)  
+**Product Name:** CC-MCP (Claude Code MCP Manager)\
+**Version:** 1.0.0 (True MVP)\
+**Platform:** Command Line Interface (CLI)\
 **Technology:** TypeScript/Deno with minimal dependencies
 
 ## Executive Summary
 
-CC-MCP is a **minimal** command-line tool that solves one critical problem: **Claude Code's built-in disable button permanently deletes MCP configurations**. This MVP provides basic configuration preservation, allowing users to disable MCPs without losing their setups.
+CC-MCP is a **minimal** command-line tool that solves one critical problem: **Claude Code's built-in
+disable button permanently deletes MCP configurations**. This MVP provides basic configuration
+preservation, allowing users to disable MCPs without losing their setups.
 
-**Core Value Proposition:** Preserve MCP configurations when disabling them, enabling instant re-activation without reconfiguration.
+**Core Value Proposition:** Preserve MCP configurations when disabling them, enabling instant
+re-activation without reconfiguration.
 
 ## Problem Statement
 
-**Critical Issue:** When you disable an MCP using Claude Code's built-in UI, it permanently deletes the configuration from `mcp.json`. For MCPs with complex setups (API keys, custom paths, environment variables), this means complete reconfiguration from scratch.
+**Critical Issue:** When you disable an MCP using Claude Code's built-in UI, it permanently deletes
+the configuration from `mcp.json`. For MCPs with complex setups (API keys, custom paths, environment
+variables), this means complete reconfiguration from scratch.
 
-**User Pain:** "I spent 20 minutes setting up my database MCP with connection strings and API keys. I disabled it for a design task, and now it's completely gone. I have to start over."
+**User Pain:** "I spent 20 minutes setting up my database MCP with connection strings and API keys.
+I disabled it for a design task, and now it's completely gone. I have to start over."
 
 ## MVP Solution
 
@@ -229,11 +235,11 @@ class SimpleMCPManager {
 
 ## Risk Mitigation
 
-| Risk | Mitigation |
-|------|------------|
-| Feature creep | Strict MVP scope, defer everything non-essential |
-| Over-engineering | 200-line limit, single file |
-| User confusion | Auto-scaffolding with working example |
+| Risk                | Mitigation                                       |
+| ------------------- | ------------------------------------------------ |
+| Feature creep       | Strict MVP scope, defer everything non-essential |
+| Over-engineering    | 200-line limit, single file                      |
+| User confusion      | Auto-scaffolding with working example            |
 | Adoption resistance | Immediate value (filesystem MCP works instantly) |
 
 ## Success Criteria
@@ -246,4 +252,6 @@ class SimpleMCPManager {
 4. Implementation stays under 200 lines of code
 5. Delivery in 2-3 days
 
-**Quote from MVP Advisor:** *"The best MVP is embarrassingly simple but solves the core problem perfectly. Users suffering from Claude Code's destructive disable will be thrilled with even basic configuration preservation."*
+**Quote from MVP Advisor:** _"The best MVP is embarrassingly simple but solves the core problem
+perfectly. Users suffering from Claude Code's destructive disable will be thrilled with even basic
+configuration preservation."_

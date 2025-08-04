@@ -45,12 +45,12 @@ interface MCPServer {
 class ConfigManager {
   private configPath = "./mcp.json";
   private disabledPath = "./mcp.json.disabled";
-  
+
   async getEnabled(): Promise<MCPConfig> {}
   async getDisabled(): Promise<MCPConfig> {}
   async enableMCP(name: string): Promise<void> {}
   async disableMCP(name: string): Promise<void> {}
-  async getAllMCPs(): Promise<{name: string, enabled: boolean}[]> {}
+  async getAllMCPs(): Promise<{ name: string; enabled: boolean }[]> {}
 }
 ```
 
@@ -64,33 +64,29 @@ const cli = new Command()
   .name("cc-mcp")
   .version("1.0.0")
   .description("Claude Code MCP Manager")
-  
   // List command
   .command("list", "List all MCPs and their status")
   .alias("ls")
   .action(listCommand)
-  
   // Enable command
   .command("enable <name:string>", "Enable an MCP")
   .action(enableCommand)
-  
   // Disable command
   .command("disable <name:string>", "Disable an MCP")
   .action(disableCommand)
-  
   // Interactive toggle
   .command("toggle", "Interactive MCP toggle")
   .action(toggleCommand)
-  
   // Add from marketplace
   .command("add <package:string>", "Add MCP from marketplace")
   .action(addCommand)
-  
   // Profile management
-  .command("profile", new Command()
-    .command("save <name:string>", "Save current config as profile")
-    .command("load <name:string>", "Load a saved profile")
-    .command("list", "List saved profiles")
+  .command(
+    "profile",
+    new Command()
+      .command("save <name:string>", "Save current config as profile")
+      .command("load <name:string>", "Load a saved profile")
+      .command("list", "List saved profiles"),
   );
 ```
 
@@ -102,16 +98,16 @@ import { Checkbox } from "https://deno.land/x/cliffy/prompt/mod.ts";
 
 export async function toggleCommand() {
   const mcps = await configManager.getAllMCPs();
-  
+
   const selected = await Checkbox.prompt({
     message: "Select MCPs to toggle:",
-    options: mcps.map(mcp => ({
-      name: `${mcp.enabled ? '✓' : '✗'} ${mcp.name}`,
+    options: mcps.map((mcp) => ({
+      name: `${mcp.enabled ? "✓" : "✗"} ${mcp.name}`,
       value: mcp.name,
-      checked: mcp.enabled
-    }))
+      checked: mcp.enabled,
+    })),
   });
-  
+
   // Update configurations based on selection
   for (const mcp of mcps) {
     if (selected.includes(mcp.name) && !mcp.enabled) {
@@ -120,7 +116,7 @@ export async function toggleCommand() {
       await configManager.disableMCP(mcp.name);
     }
   }
-  
+
   showRestartReminder();
 }
 ```
@@ -139,7 +135,7 @@ interface MarketplaceMCP {
 
 class Marketplace {
   private apiUrl = "https://mcp-marketplace.example.com/api";
-  
+
   async search(query: string): Promise<MarketplaceMCP[]> {}
   async getPackage(name: string): Promise<MarketplaceMCP> {}
   async install(package: MarketplaceMCP): Promise<void> {}
@@ -154,7 +150,9 @@ class Marketplace {
 function showRestartReminder() {
   console.log(colors.yellow("\n⚠️  Configuration changed!"));
   console.log(colors.yellow("Please restart Claude Code for changes to take effect."));
-  console.log(colors.dim("Quit Claude Code and run: ") + colors.cyan("claude -c") + colors.dim(" to resume"));
+  console.log(
+    colors.dim("Quit Claude Code and run: ") + colors.cyan("claude -c") + colors.dim(" to resume"),
+  );
 }
 ```
 
@@ -165,7 +163,7 @@ function showRestartReminder() {
 function validateMCPConfig(config: unknown): config is MCPServer {
   // Check required fields
   if (!config.command) return false;
-  
+
   // Validate command exists
   try {
     const result = await Deno.command(config.command, { args: ["--version"] }).output();
@@ -185,10 +183,10 @@ class ProfileManager {
     const current = await configManager.getEnabled();
     await Deno.writeTextFile(
       `~/.cc-mcp/profiles/${name}.json`,
-      JSON.stringify(current, null, 2)
+      JSON.stringify(current, null, 2),
     );
   }
-  
+
   async loadProfile(name: string) {
     const profile = await Deno.readTextFile(`~/.cc-mcp/profiles/${name}.json`);
     // Apply profile configuration
@@ -204,11 +202,11 @@ class ProfileManager {
 function formatMCPList(mcps: MCPInfo[]) {
   const table = new Table()
     .header(["Status", "Name", "Command", "Description"])
-    .body(mcps.map(mcp => [
+    .body(mcps.map((mcp) => [
       mcp.enabled ? colors.green("✓") : colors.red("✗"),
       colors.bold(mcp.name),
       colors.dim(mcp.command),
-      mcp.description || colors.dim("No description")
+      mcp.description || colors.dim("No description"),
     ]))
     .border(true)
     .render();

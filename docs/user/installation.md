@@ -2,24 +2,26 @@
 
 ## ⚠️ Critical Warning
 
-**NEVER use Claude Code's built-in MCP disable button!** It permanently deletes your MCP configuration. Always use CC-MCP to preserve your settings.
+**NEVER use Claude Code's built-in MCP disable button!** It permanently deletes your MCP
+configuration. Always use CC-MCP to preserve your settings.
 
 ## Why CC-MCP Exists
 
-When you disable an MCP through Claude Code's UI, it deletes the entire configuration - including API keys, custom paths, and arguments. CC-MCP solves this by:
+When you disable an MCP through Claude Code's UI, it deletes the entire configuration - including
+API keys, custom paths, and arguments. CC-MCP solves this by:
 
 - Moving configs to a `.disabled` file instead of deleting them
-- Preserving all configuration data for instant re-enabling
+- **Automatic backups** before every change
+- **Recovery system** to restore accidentally deleted MCPs
 - Managing context window usage effectively
 
 **Benefits:**
 
 - Preserve complex MCP configurations
-- Manage context window usage (some MCPs consume significant space)
+- Recover from accidental deletions
+- Manage context window usage (some MCPs like Canva consume significant space)
 - Enable/disable MCPs based on current task
 - Instantly re-enable without reconfiguration
-
-**Note:** This is the MVP version focused on configuration preservation. Advanced features like automatic backups, recovery systems, and interactive modes are planned for future releases.
 
 ## Quick Install
 
@@ -76,7 +78,7 @@ Creating mcp.json.disabled with example configurations...
   Example: bunx, bun x, npx, node, python, etc.
 ```
 
-### Basic Commands (MVP)
+### Basic Commands
 
 ```bash
 # List all MCPs
@@ -92,58 +94,81 @@ cc-mcp disable github
 cc-mcp e filesystem
 cc-mcp d github
 
-# Initialize with example configurations
-cc-mcp init
-```
+# Interactive mode (best feature!)
+cc-mcp toggle
+cc-mcp t
 
-**Note:** Interactive modes, bulk operations, and advanced features are planned for future releases after the MVP.
+# Bulk operations
+cc-mcp enable-all
+cc-mcp disable-all
+```
 
 ### Example Workflow
 
-1. **Check current status**
+1. **Morning: Working on web development**
 
    ```bash
-   $ cc-mcp
-   ✓ filesystem
-   ✗ github
+   $ cc-mcp toggle
+   # Enable: filesystem, github
+   # Disable: canva, database, slack
+
+   # Restart Claude Code:
+   $ claude -c
    ```
 
-2. **Enable GitHub MCP (after configuring token)**
+2. **Afternoon: Switching to design work**
 
    ```bash
-   $ cc-mcp enable github
-   ✓ Enabled github
-   ⚠️ Restart Claude Code: claude -c
+   $ cc-mcp toggle
+   # Enable: canva, filesystem
+   # Disable: github, database
+   # (Frees up context window from unused MCPs)
+
+   # Restart to apply changes:
+   $ claude -c
    ```
 
-3. **Later, disable for context management**
+3. **Next day: Back to web dev**
 
    ```bash
-   $ cc-mcp disable github
-   ✓ Disabled github (configuration preserved)
-   ⚠️ Restart Claude Code: claude -c
+   $ cc-mcp toggle
+   # Enable: filesystem, github
+   # All your GitHub tokens and configs are preserved!
+
+   $ claude -c
    ```
 
-4. **Re-enable instantly - no reconfiguration needed!**
+### Checking Current Status
+
+```bash
+$ cc-mcp list
+
+  Status      Name         Command
+  ✓ enabled   filesystem   bunx
+  ✗ disabled  github       bun
+  ✓ enabled   sqlite       bunx
+```
+
+2. **Use interactive toggle**
 
    ```bash
-   $ cc-mcp enable github
-   ✓ Enabled github
-   ⚠️ Restart Claude Code: claude -c
+   $ cc-mcp toggle
+
+   ? Select MCPs to enable (space to toggle, enter to confirm):
+   ◉ filesystem (bunx)
+   ◯ github (bun)
+   ◉ sqlite (bunx)
    ```
 
-**Key Point:** The configuration is preserved in `.mcp.json.disabled`, so re-enabling requires zero setup.
-
-### Current Status Display
+3. **Get restart reminder**
 
    ```bash
-   $ cc-mcp list
-   
-   ✓ filesystem
-   ✗ github
-   ```
+   ✓ Updated 1 MCP(s)
 
-The status shows which MCPs are currently enabled (✓) and disabled (✗).
+   ⚠️  Configuration changed!
+   Please restart Claude Code for changes to take effect.
+   Quit Claude Code and run: claude -c to resume
+   ```
 
 ## File Structure
 
@@ -216,7 +241,8 @@ your-project/
 }
 ```
 
-**Note:** CC-MCP automatically creates these files with examples on first run, or you can run `cc-mcp init` to reset to defaults.
+**Note:** CC-MCP automatically creates these files with examples on first run, or you can run
+`cc-mcp init` to reset to defaults.
 
 ## Using with Claude in Claude Code
 
@@ -235,7 +261,57 @@ Claude: "I'll help you configure the right MCPs for this project"
 > claude -c
 ```
 
-Note: After enabling/disabling MCPs, you'll need to quit and run `claude -c` to resume with the new configuration.
+Note: After enabling/disabling MCPs, you'll need to quit and run `claude -c` to resume with the new
+configuration.
+
+## Backup & Recovery Features
+
+CC-MCP automatically backs up your configurations before every change. If you accidentally use
+Claude Code's disable button:
+
+### Check for Missing MCPs
+
+```bash
+$ cc-mcp doctor
+
+⚠️  Found 2 missing MCP(s):
+  • github
+  • slack
+
+These configurations may have been deleted using Claude Code's UI.
+Run 'cc-mcp recover' to restore from backup.
+```
+
+### Recover Deleted Configurations
+
+```bash
+$ cc-mcp recover
+
+Found 2 missing MCP(s):
+  • github
+  • slack
+
+Recover 2 MCP(s) from backup? Y
+
+✓ Recovered 2 MCP(s) to disabled state
+  Run 'cc-mcp list' to see all MCPs
+  Run 'cc-mcp enable <n>' to re-enable specific MCPs
+```
+
+### View Backup History
+
+```bash
+$ cc-mcp history
+
+Backup History:
+
+  Time                    Operation
+  2024-01-15 10:30:00    Enabled filesystem
+  2024-01-15 10:25:00    Disabled github
+  2024-01-15 09:00:00    Toggle MCPs
+
+  Keeping last 30 backups automatically
+```
 
 ## Configuring Scaffolded MCPs
 
@@ -276,27 +352,28 @@ cc-mcp enable postgres
 
 ## Tips & Tricks
 
-1. **Use Short Aliases**: `cc-mcp e github` and `cc-mcp d github` for faster commands
+1. **Quick Toggle**: Use `cc-mcp t` for the fastest way to manage MCPs
 
-2. **Manual Backup**: Before major changes (optional)
+2. **Backup Configurations**: Before major changes
 
    ```bash
-   cp .mcp.json .mcp.json.backup
-   cp .mcp.json.disabled .mcp.json.disabled.backup
+   cp mcp.json mcp.json.backup
+   cp mcp.json.disabled mcp.json.disabled.backup
    ```
 
 3. **Check JSON Validity**: If you manually edit the files
 
    ```bash
-   deno fmt --check .mcp.json
+   deno fmt --check mcp.json
    ```
 
-4. **Project-Specific MCPs**: Keep different .mcp.json files for different projects
+4. **Project-Specific MCPs**: Keep different mcp.json files for different projects
 
-5. **Shell Alias**: Add to your shell config for faster access
+5. **Alias for Even Faster Access**: Add to your shell config
 
    ```bash
    alias mcp="cc-mcp"
+   alias mcpt="cc-mcp toggle"
    ```
 
 ## Future Marketplace Integration
