@@ -117,7 +117,7 @@ body:
     attributes:
       label: Epic/Initiative
       description: Which epic or larger initiative does this story belong to?
-      placeholder: e.g., "Phase 2: Security & Recovery"
+      placeholder: "e.g., \"Phase 2: Security & Recovery\""
     validations:
       required: false
 
