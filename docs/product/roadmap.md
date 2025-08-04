@@ -16,7 +16,7 @@
 
 **Goal:** Make MVP ready for public release
 
-- [ ] Update GitHub URLs in README.md (currently has placeholder)
+- [x] Update GitHub URLs in README.md (completed - all URLs point to <https://github.com/lisaross/cc-mcp>)
 - [ ] Add LICENSE file (MIT or Apache 2.0 recommended)
 - [ ] Create GitHub repository and make public
 - [ ] Add GitHub release/tag for v1.0.0

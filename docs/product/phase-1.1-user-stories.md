@@ -119,7 +119,7 @@ So that **I can successfully install and use CC-MCP without encountering broken 
 - [ ] **Given** installation section, **when** updating, **then** clone command uses correct repository URL
 - [ ] **Given** issue reporting section, **when** updating, **then** issues link points to correct repository
 - [ ] **Given** updated URLs, **when** testing, **then** all links are accessible and functional
-- [ ] Replace placeholder URLs with: <https://github.com/lisaross/cc-mcp>
+- [x] Replace placeholder URLs with: <https://github.com/lisaross/cc-mcp> (completed - all URLs already correct)
 - [ ] Installation instructions work end-to-end
 - [ ] All relative links function correctly
 

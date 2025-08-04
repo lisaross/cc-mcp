@@ -184,6 +184,7 @@ cc-mcp/
 ### Implementation Phases
 
 **Phase 1A: Foundation Work (Week 1 - 7 story points)**
+
 1. **Issue #11**: Add MIT License File (2 pts, no dependencies) - **START HERE**
 2. **Issue #17**: Conduct Security Validation (1 pt, independent) - Parallel track
 3. **Issue #6**: Create Public GitHub Repository (3 pts, critical path)
@@ -196,6 +197,7 @@ cc-mcp/
 8. **Issue #13**: Validate Release Installation (2 pts, follows #12)
 
 **Phase 1C: Optional Enhancements (Future Phase 1.2)**
+
 - **Issue #14**: Research Deno Land Registry (1 pt)
 - **Issue #15**: Submit to Deno Land Registry (1 pt)
 - **Issue #16**: Create Installation Script (1 pt)
