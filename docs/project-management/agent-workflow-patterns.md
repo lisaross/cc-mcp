@@ -2,7 +2,8 @@
 
 ## Overview
 
-This document outlines how to chain Claude Code agents for efficient project management workflows, from roadmap planning to GitHub issue management and release notes.
+This document outlines how to chain Claude Code agents for efficient project management workflows,
+from roadmap planning to GitHub issue management and release notes.
 
 ## Available Agents
 
@@ -23,7 +24,8 @@ This document outlines how to chain Claude Code agents for efficient project man
 
 ### 1. Batch + Parallel Roadmap → GitHub Issues Workflow ⚡
 
-**Enhanced Chain**: `epic-breakdown-agent` → `batch-story-generator-agent` → **PARALLEL** `github-issues-agent`
+**Enhanced Chain**: `epic-breakdown-agent` → `batch-story-generator-agent` → **PARALLEL**
+`github-issues-agent`
 
 **Process**:
 
@@ -205,7 +207,10 @@ This document outlines how to chain Claude Code agents for efficient project man
 
 ## Next Steps
 
-1. **Restart Required**: Run `claude -c` to activate new batch-story-generator-agent and enhanced github-issues-agent
-2. **Test Batch Workflow**: Process CC-MCP Phase 1.1 features using the new batch + parallel approach
-3. **Validate Parallel Execution**: Confirm multiple github-issues-agent instances can run simultaneously
+1. **Restart Required**: Run `claude -c` to activate new batch-story-generator-agent and enhanced
+   github-issues-agent
+2. **Test Batch Workflow**: Process CC-MCP Phase 1.1 features using the new batch + parallel
+   approach
+3. **Validate Parallel Execution**: Confirm multiple github-issues-agent instances can run
+   simultaneously
 4. **Performance Measurement**: Compare batch vs. sequential processing times

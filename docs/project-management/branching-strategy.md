@@ -2,7 +2,9 @@
 
 ## Overview
 
-This document defines the branching strategy for CC-MCP development to ensure code quality, traceability, and professional development workflows. All changes must go through pull requests with proper issue tracking.
+This document defines the branching strategy for CC-MCP development to ensure code quality,
+traceability, and professional development workflows. All changes must go through pull requests with
+proper issue tracking.
 
 ## Branch Protection Rules
 
@@ -35,13 +37,13 @@ feature/7-backup-recovery-system
 - Major functionality additions
 - Always include GitHub issue number for traceability
 
-### 2. Fix Branches  
+### 2. Fix Branches
 
 **Format:** `fix/[issue-number]-[brief-description]`
 
 **Examples:**
 
-```bash  
+```bash
 fix/8-configuration-validation
 fix/12-cli-error-handling
 fix/19-license-detection-bug
@@ -121,7 +123,7 @@ hotfix/v2.0.1-config-corruption-fix
    ```bash
    # Push branch
    git push origin feature/[issue-number]-[description]
-   
+
    # Create PR with GitHub CLI
    gh pr create --title "[Feature] Brief description (#issue-number)" \
                 --body "Closes #[issue-number]" \
@@ -180,7 +182,7 @@ Optional longer description explaining the change in more detail.
 ### Types
 
 - `feat`: New features
-- `fix`: Bug fixes  
+- `fix`: Bug fixes
 - `docs`: Documentation changes
 - `style`: Code style changes (formatting, etc.)
 - `refactor`: Code refactoring without functionality changes
@@ -316,4 +318,5 @@ github-issues-agent → multiple GitHub issues
 # Then create branches for each issue in parallel
 ```
 
-This branching strategy ensures professional development practices, complete traceability from roadmap to deployment, and seamless integration with our agent-driven project management workflow.
+This branching strategy ensures professional development practices, complete traceability from
+roadmap to deployment, and seamless integration with our agent-driven project management workflow.

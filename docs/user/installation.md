@@ -2,11 +2,13 @@
 
 ## ⚠️ Critical Warning
 
-**NEVER use Claude Code's built-in MCP disable button!** It permanently deletes your MCP configuration. Always use CC-MCP to preserve your settings.
+**NEVER use Claude Code's built-in MCP disable button!** It permanently deletes your MCP
+configuration. Always use CC-MCP to preserve your settings.
 
 ## Why CC-MCP Exists
 
-When you disable an MCP through Claude Code's UI, it deletes the entire configuration - including API keys, custom paths, and arguments. CC-MCP solves this by:
+When you disable an MCP through Claude Code's UI, it deletes the entire configuration - including
+API keys, custom paths, and arguments. CC-MCP solves this by:
 
 - Moving configs to a `.disabled` file instead of deleting them
 - **Automatic backups** before every change
@@ -109,7 +111,7 @@ cc-mcp disable-all
    $ cc-mcp toggle
    # Enable: filesystem, github
    # Disable: canva, database, slack
-   
+
    # Restart Claude Code:
    $ claude -c
    ```
@@ -121,7 +123,7 @@ cc-mcp disable-all
    # Enable: canva, filesystem
    # Disable: github, database
    # (Frees up context window from unused MCPs)
-   
+
    # Restart to apply changes:
    $ claude -c
    ```
@@ -132,26 +134,26 @@ cc-mcp disable-all
    $ cc-mcp toggle
    # Enable: filesystem, github
    # All your GitHub tokens and configs are preserved!
-   
+
    $ claude -c
    ```
 
 ### Checking Current Status
 
-   ```bash
-   $ cc-mcp list
-   
-     Status      Name         Command
-     ✓ enabled   filesystem   bunx
-     ✗ disabled  github       bun
-     ✓ enabled   sqlite       bunx
-   ```
+```bash
+$ cc-mcp list
+
+  Status      Name         Command
+  ✓ enabled   filesystem   bunx
+  ✗ disabled  github       bun
+  ✓ enabled   sqlite       bunx
+```
 
 2. **Use interactive toggle**
 
    ```bash
    $ cc-mcp toggle
-   
+
    ? Select MCPs to enable (space to toggle, enter to confirm):
    ◉ filesystem (bunx)
    ◯ github (bun)
@@ -162,7 +164,7 @@ cc-mcp disable-all
 
    ```bash
    ✓ Updated 1 MCP(s)
-   
+
    ⚠️  Configuration changed!
    Please restart Claude Code for changes to take effect.
    Quit Claude Code and run: claude -c to resume
@@ -239,7 +241,8 @@ your-project/
 }
 ```
 
-**Note:** CC-MCP automatically creates these files with examples on first run, or you can run `cc-mcp init` to reset to defaults.
+**Note:** CC-MCP automatically creates these files with examples on first run, or you can run
+`cc-mcp init` to reset to defaults.
 
 ## Using with Claude in Claude Code
 
@@ -258,11 +261,13 @@ Claude: "I'll help you configure the right MCPs for this project"
 > claude -c
 ```
 
-Note: After enabling/disabling MCPs, you'll need to quit and run `claude -c` to resume with the new configuration.
+Note: After enabling/disabling MCPs, you'll need to quit and run `claude -c` to resume with the new
+configuration.
 
 ## Backup & Recovery Features
 
-CC-MCP automatically backs up your configurations before every change. If you accidentally use Claude Code's disable button:
+CC-MCP automatically backs up your configurations before every change. If you accidentally use
+Claude Code's disable button:
 
 ### Check for Missing MCPs
 

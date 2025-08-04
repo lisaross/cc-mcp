@@ -2,14 +2,17 @@
 
 ## Product Overview
 
-**Product Name:** CC-MCP (Claude Code MCP Manager)  
-**Version:** 1.0.0 (MVP)  
-**Platform:** Command Line Interface (CLI)  
+**Product Name:** CC-MCP (Claude Code MCP Manager)\
+**Version:** 1.0.0 (MVP)\
+**Platform:** Command Line Interface (CLI)\
 **Technology:** TypeScript/Deno with Cliffy framework
 
 ## Executive Summary
 
-CC-MCP is a lightweight command-line tool that simplifies the management of Model Context Protocol (MCP) servers within Claude Code projects. It provides a user-friendly interface to enable, disable, and configure MCP servers without manually editing JSON files, while preserving configurations that Claude Code's built-in UI would delete.
+CC-MCP is a lightweight command-line tool that simplifies the management of Model Context Protocol
+(MCP) servers within Claude Code projects. It provides a user-friendly interface to enable, disable,
+and configure MCP servers without manually editing JSON files, while preserving configurations that
+Claude Code's built-in UI would delete.
 
 The tool includes:
 
@@ -18,13 +21,15 @@ The tool includes:
 - Sensible defaults with 7 pre-configured MCPs
 - Claude Code-style branding for instant recognition
 
-Version 1.0.0 delivers 10 essential features focused on solving the immediate pain points of MCP management.
+Version 1.0.0 delivers 10 essential features focused on solving the immediate pain points of MCP
+management.
 
 ### Problem Statement
 
 Currently, managing MCP servers in Claude Code has critical limitations:
 
-- **Claude Code's disable button DELETES configurations entirely** - no way to re-enable without recreating
+- **Claude Code's disable button DELETES configurations entirely** - no way to re-enable without
+  recreating
 - Context window pollution - some MCPs (e.g., Canva) consume significant context when not needed
 - Manually editing `mcp.json` configuration files
 - Remembering complex JSON syntax and environment variables
@@ -32,7 +37,10 @@ Currently, managing MCP servers in Claude Code has critical limitations:
 - Manual restart of Claude Code after changes
 - Risk of syntax errors breaking configurations
 
-**Critical Issue:** When you disable an MCP using Claude Code's built-in UI, it permanently deletes the configuration from `mcp.json`. For MCPs with complex setups (API keys, custom paths, specific arguments), this means you have to reconfigure everything from scratch when you want to use it again.
+**Critical Issue:** When you disable an MCP using Claude Code's built-in UI, it permanently deletes
+the configuration from `mcp.json`. For MCPs with complex setups (API keys, custom paths, specific
+arguments), this means you have to reconfigure everything from scratch when you want to use it
+again.
 
 ### Solution
 
@@ -148,7 +156,8 @@ Create default configuration files with common MCP examples.
 **Acceptance Criteria:**
 
 - Creates mcp.json with filesystem MCP enabled
-- Creates mcp.json.disabled with 6 common MCPs (github, sqlite, anthropic, slack, postgres, google_drive)
+- Creates mcp.json.disabled with 6 common MCPs (github, sqlite, anthropic, slack, postgres,
+  google_drive)
 - Shows placeholder values for API keys and tokens
 - Warns if files already exist and asks for confirmation
 - Displays summary of what was created
@@ -274,7 +283,8 @@ The following features are NOT included in v1.0.0:
 
 ### Critical Warning
 
-⚠️ **DO NOT use Claude Code's built-in disable button for MCPs** - it permanently deletes the configuration. Always use CC-MCP for enabling/disabling to preserve your settings.
+⚠️ **DO NOT use Claude Code's built-in disable button for MCPs** - it permanently deletes the
+configuration. Always use CC-MCP for enabling/disabling to preserve your settings.
 
 ### Recommended Workflow
 
@@ -444,4 +454,8 @@ deno install --allow-read --allow-write --name cc-mcp ./cc-mcp.ts
 
 ## Conclusion
 
-CC-MCP v1.0.0 provides a minimal but highly useful tool for Claude Code developers. By focusing on the core problem of configuration management and including sensible defaults, we can deliver immediate value with zero learning curve. Users can be productive within seconds of installation. The simple architecture and clear scope ensure we can ship quickly and iterate based on user feedback.
+CC-MCP v1.0.0 provides a minimal but highly useful tool for Claude Code developers. By focusing on
+the core problem of configuration management and including sensible defaults, we can deliver
+immediate value with zero learning curve. Users can be productive within seconds of installation.
+The simple architecture and clear scope ensure we can ship quickly and iterate based on user
+feedback.
