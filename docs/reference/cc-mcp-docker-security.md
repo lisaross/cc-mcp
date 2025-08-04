@@ -32,7 +32,7 @@ Running MCPs in Docker containers provides:
       }
     },
     "github": {
-      "mode": "external",  // Still support external mode
+      "mode": "external", // Still support external mode
       "command": "npx",
       "args": ["@modelcontextprotocol/server-github"]
     }
@@ -49,31 +49,34 @@ class DockerMCPManager {
     if (!await this.imageExists(config.image)) {
       await this.buildImage(name, config);
     }
-    
+
     // Start container
     const cmd = new Deno.Command("docker", {
       args: [
         "run",
         "-d",
-        "--name", `mcp-${name}`,
-        "--restart", "unless-stopped",
-        "-p", `${await this.findFreePort()}:3000`,
+        "--name",
+        `mcp-${name}`,
+        "--restart",
+        "unless-stopped",
+        "-p",
+        `${await this.findFreePort()}:3000`,
         ...this.getVolumeArgs(config.volumes),
         ...this.getEnvArgs(config.environment),
         ...this.getLimitArgs(config.limits),
-        config.image
-      ]
+        config.image,
+      ],
     });
-    
+
     await cmd.output();
   }
-  
+
   async stopMCP(name: string): Promise<void> {
     await new Deno.Command("docker", {
-      args: ["stop", `mcp-${name}`]
+      args: ["stop", `mcp-${name}`],
     }).output();
   }
-  
+
   async updateMCP(name: string): Promise<void> {
     // Pull latest image or rebuild
     await this.stopMCP(name);
@@ -147,10 +150,10 @@ interface MCPSource {
 
 class UpdateManager {
   private mcpDir = "~/.cc-mcp/sources";
-  
+
   async checkForUpdates(): Promise<UpdateInfo[]> {
     const updates = [];
-    
+
     for (const [name, source] of Object.entries(this.sources)) {
       if (source.type === "git") {
         const hasUpdate = await this.checkGitUpdate(name, source);
@@ -159,25 +162,25 @@ class UpdateManager {
         }
       }
     }
-    
+
     return updates;
   }
-  
+
   async updateMCP(name: string): Promise<void> {
     const source = this.sources[name];
-    
+
     if (source.type === "git") {
       // Pull latest changes
       await this.gitPull(name);
-      
+
       // Rebuild Docker image
       await this.rebuildImage(name);
-      
+
       // Restart instructions
       await this.showRestartInstructions();
     }
   }
-  
+
   async showRestartInstructions() {
     console.log("Please restart Claude Code for changes to take effect.");
     console.log("Quit Claude Code and run: claude -c to resume");
@@ -215,7 +218,7 @@ if (await updateManager.hasUpdatesAvailable()) {
 // Auto-update based on policy
 async function handleStartupUpdates() {
   const mcps = await manager.getAllMCPs();
-  
+
   for (const mcp of mcps) {
     if (mcp.source?.updatePolicy === "startup") {
       await updateManager.updateMCP(mcp.name);
@@ -233,31 +236,31 @@ class MarketplaceInstaller {
   async install(packageName: string): Promise<void> {
     // 1. Fetch package metadata
     const metadata = await this.fetchPackageInfo(packageName);
-    
+
     // 2. Check compatibility
     if (!this.isCompatible(metadata)) {
       throw new Error(`Package requires Claude Code ${metadata.minVersion}`);
     }
-    
+
     // 3. Download source
     const source = await this.downloadSource(metadata);
-    
+
     // 4. Build Docker image
     const image = await this.buildDockerImage(source, metadata);
-    
+
     // 5. Run tests
     const testResult = await this.runTests(image, metadata.tests);
-    
+
     if (!testResult.success) {
       throw new Error(`Tests failed: ${testResult.error}`);
     }
-    
+
     // 6. Generate configuration
     const config = this.generateConfig(metadata, image);
-    
+
     // 7. Add to mcp.json
     await this.addToConfig(packageName, config);
-    
+
     console.log(colors.green(`✓ Installed ${packageName}`));
     console.log(colors.dim(`Run 'cc-mcp enable ${packageName}' to activate`));
   }
@@ -288,7 +291,7 @@ interface MarketplacePackage {
     capabilities?: string[];
   };
   tests: {
-    connection: string;  // Test command
+    connection: string; // Test command
     timeout: number;
   };
   security: {
@@ -305,23 +308,23 @@ class MCPTester {
   async testMCP(config: TestConfig): Promise<TestResult> {
     // 1. Start container in test mode
     const container = await this.startTestContainer(config);
-    
+
     try {
       // 2. Wait for startup
       await this.waitForReady(container, config.timeout);
-      
+
       // 3. Test connection
       const connected = await this.testConnection(container);
-      
+
       // 4. Run capability tests
       const capabilities = await this.testCapabilities(container, config.tests);
-      
+
       // 5. Security scan
       const security = await this.securityScan(container);
-      
+
       return {
         success: connected && capabilities.passed && security.safe,
-        details: { connected, capabilities, security }
+        details: { connected, capabilities, security },
       };
     } finally {
       // Cleanup

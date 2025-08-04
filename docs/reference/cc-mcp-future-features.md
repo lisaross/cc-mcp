@@ -33,9 +33,9 @@ class SecurityMonitor {
       this.checkGitHubAdvisories(name),
       this.checkCVEDatabase(name),
       this.checkCommunityReports(name),
-      this.checkPackageRegistry(name)
+      this.checkPackageRegistry(name),
     ]);
-    
+
     return this.evaluateSecurityStatus(advisories.flat());
   }
 }
@@ -145,24 +145,24 @@ class SettingsManager {
       DEFAULT_SETTINGS,
       await this.loadUserSettings(),
       await this.loadSharedSettings(),
-      await this.loadProjectSettings()
+      await this.loadProjectSettings(),
     ]);
-    
+
     return settings;
   }
-  
+
   async getActiveProfile(): Promise<string> {
     // Check environment variable first
     if (process.env.CC_MCP_PROFILE) {
       return process.env.CC_MCP_PROFILE;
     }
-    
+
     // Then project setting
     const projectSettings = await this.loadProjectSettings();
     if (projectSettings.activeProfile) {
       return projectSettings.activeProfile;
     }
-    
+
     // Finally user default
     return "default";
   }
@@ -337,4 +337,5 @@ Press 'q' to quit, 'r' to reset stats
 - **Performance awareness**: Know context costs upfront
 - **Proactive warnings**: Stop issues before they happen
 
-The vision: CC-MCP becomes the complete MCP management platform, handling everything from discovery to security to team collaboration, all within the terminal.
+The vision: CC-MCP becomes the complete MCP management platform, handling everything from discovery
+to security to team collaboration, all within the terminal.
