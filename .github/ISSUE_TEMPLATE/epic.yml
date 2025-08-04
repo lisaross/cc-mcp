@@ -1,0 +1,219 @@
+name: Epic
+description: Create an epic for large initiatives spanning multiple user stories
+title: "[Epic] "
+labels: ["type:epic", "status:needs-triage"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Epics represent large initiatives that span multiple user stories and development iterations. 
+        Use this template for major features or themes that require coordination across multiple issues.
+
+  - type: input
+    id: epic-id
+    attributes:
+      label: Epic ID
+      description: Unique identifier for this epic (e.g., EPIC-SECURITY, EPIC-MARKETPLACE)
+      placeholder: EPIC-[THEME]
+    validations:
+      required: true
+
+  - type: textarea
+    id: epic-description
+    attributes:
+      label: Epic Description
+      description: High-level description of what this epic aims to achieve
+      placeholder: This epic focuses on...
+    validations:
+      required: true
+
+  - type: textarea
+    id: business-objective
+    attributes:
+      label: Business Objective
+      description: What business goal or user outcome does this epic support?
+      placeholder: |
+        This epic will enable users to...
+        The business value is...
+        Success will be measured by...
+    validations:
+      required: true
+
+  - type: textarea
+    id: user-stories
+    attributes:
+      label: User Stories (High-Level)
+      description: List the major user stories that make up this epic
+      placeholder: |
+        As a [user], I want [capability] so that [benefit]
+        As a [user], I want [capability] so that [benefit]
+        As a [user], I want [capability] so that [benefit]
+    validations:
+      required: true
+
+  - type: dropdown
+    id: epic-size
+    attributes:
+      label: Epic Size
+      description: Estimated scope and complexity of this epic
+      options:
+        - Small Epic - 2-3 user stories, 1-2 sprints
+        - Medium Epic - 4-6 user stories, 2-3 sprints  
+        - Large Epic - 7-10 user stories, 3-4 sprints
+        - Extra Large Epic - 10+ user stories, multiple months
+      default: 1
+    validations:
+      required: true
+
+  - type: dropdown
+    id: epic-priority
+    attributes:
+      label: Epic Priority
+      description: Strategic importance of this epic
+      options:
+        - Critical - Core functionality, blocking other work
+        - High - Important for user satisfaction and adoption
+        - Medium - Valuable enhancement to existing capabilities
+        - Low - Future improvement, not currently essential
+      default: 2
+    validations:
+      required: true
+
+  - type: input
+    id: target-milestone
+    attributes:
+      label: Target Milestone
+      description: Which release milestone should this epic target?
+      placeholder: e.g., "v2.0 - Security & Recovery"
+    validations:
+      required: true
+
+  - type: textarea
+    id: success-criteria
+    attributes:
+      label: Success Criteria
+      description: How will we know this epic is successful?
+      placeholder: |
+        - Users can successfully [key capability]
+        - Performance improves by [measurable amount]
+        - User satisfaction increases in [specific area]
+        - Adoption rate increases by [percentage]
+    validations:
+      required: true
+
+  - type: textarea
+    id: assumptions
+    attributes:
+      label: Assumptions
+      description: What assumptions are we making about this epic?
+      placeholder: |
+        - Users have [technical capability/knowledge]
+        - External dependencies will be available
+        - Performance requirements are [specification]
+    validations:
+      required: false
+
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Constraints
+      description: What limitations or constraints affect this epic?
+      placeholder: |
+        - Must maintain backward compatibility
+        - Limited to [resource constraint]
+        - Cannot break existing [functionality]
+    validations:
+      required: false
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies
+      description: What other epics, technical work, or external factors does this depend on?
+      placeholder: |
+        - Epic [name] must be completed first
+        - Requires [external service/API] integration
+        - Blocked by [technical constraint/decision]
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: affected-areas
+    attributes:
+      label: Affected Areas
+      description: Which parts of CC-MCP will this epic impact? (Check all that apply)
+      options:
+        - label: Core MCP management functionality
+        - label: CLI interface and user experience
+        - label: Security and vulnerability checking
+        - label: Configuration and setup processes
+        - label: Documentation and help systems
+        - label: Performance and reliability
+        - label: Integration with external tools
+        - label: Testing and quality assurance
+
+  - type: textarea
+    id: technical-approach
+    attributes:
+      label: Technical Approach (High-Level)
+      description: Overall technical strategy for implementing this epic
+      placeholder: |
+        - Architecture: [high-level design approach]
+        - Key components: [major system changes]
+        - Integration points: [external systems]
+        - Data storage: [if applicable]
+    validations:
+      required: false
+
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks and Mitigation
+      description: What risks do you foresee and how might we mitigate them?
+      placeholder: |
+        - Risk: [description]
+          Mitigation: [strategy]
+        - Risk: [description]
+          Mitigation: [strategy]
+    validations:
+      required: false
+
+  - type: textarea
+    id: out-of-scope
+    attributes:
+      label: Out of Scope
+      description: What is explicitly NOT included in this epic?
+      placeholder: |
+        This epic will NOT include:
+        - [specific functionality]
+        - [integration with X]
+        - [advanced feature Y]
+    validations:
+      required: false
+
+  - type: textarea
+    id: breakdown-plan
+    attributes:
+      label: Story Breakdown Plan
+      description: How do you plan to break this epic into implementable user stories?
+      placeholder: |
+        Phase 1: [foundational stories]
+        Phase 2: [core functionality stories]  
+        Phase 3: [enhancement and polish stories]
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: epic-checklist
+    attributes:
+      label: Epic Readiness Checklist
+      description: Verify this epic is ready for story breakdown and implementation
+      options:
+        - label: Business objective is clear and measurable
+        - label: Success criteria are defined and testable
+        - label: High-level user stories identified
+        - label: Major dependencies and constraints documented
+        - label: Target milestone and timeline established
+        - label: Technical approach is feasible
+        - label: Risks have been identified and mitigation planned

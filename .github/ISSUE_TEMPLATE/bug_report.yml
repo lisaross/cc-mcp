@@ -1,0 +1,177 @@
+name: Bug Report
+description: Report a bug or issue in CC-MCP
+title: "[Bug] "
+labels: ["type:bug", "status:needs-triage"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! Please fill out this template to help us identify and fix the issue quickly.
+
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is.
+      placeholder: Describe what's happening...
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: List the exact steps to reproduce the behavior.
+      placeholder: |
+        1. Run command `cc-mcp ...`
+        2. Click on '....'
+        3. See error
+      value: |
+        1. 
+        2. 
+        3. 
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+      description: What did you expect to happen?
+      placeholder: I expected...
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual Behavior
+      description: What actually happened instead?
+      placeholder: Instead, what happened was...
+    validations:
+      required: true
+
+  - type: textarea
+    id: error-output
+    attributes:
+      label: Error Output
+      description: If applicable, paste any error messages or logs here.
+      placeholder: |
+        Error: Something went wrong
+        Stack trace...
+      render: shell
+    validations:
+      required: false
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment Information
+      description: Please provide details about your environment.
+      placeholder: |
+        - OS: [e.g., macOS 13.0, Ubuntu 22.04, Windows 11]
+        - Deno version: [e.g., 1.40.0]
+        - CC-MCP version: [e.g., 1.0.0]
+        - Claude Code version: [if applicable]
+        - Terminal: [e.g., iTerm2, Terminal.app, PowerShell]
+      value: |
+        - OS: 
+        - Deno version: 
+        - CC-MCP version: 
+        - Claude Code version: 
+        - Terminal: 
+    validations:
+      required: true
+
+  - type: textarea
+    id: configuration
+    attributes:
+      label: Configuration Details
+      description: Share relevant configuration files (remove any sensitive information).
+      placeholder: |
+        Contents of .mcp.json:
+        ```json
+        {
+          "mcpServers": {
+            ...
+          }
+        }
+        ```
+      render: json
+    validations:
+      required: false
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Bug Severity
+      description: How severe is this bug's impact on your usage?
+      options:
+        - Low - Minor inconvenience, workaround available
+        - Medium - Affects functionality but not critical
+        - High - Major functionality broken
+        - Critical - Application unusable or data loss
+      default: 1
+    validations:
+      required: true
+
+  - type: dropdown
+    id: frequency
+    attributes:
+      label: How Often Does This Occur?
+      description: How frequently can you reproduce this bug?
+      options:
+        - Always - Every time I try
+        - Often - Most of the time
+        - Sometimes - Occasionally happens
+        - Rarely - Hard to reproduce
+        - Once - Only happened once
+      default: 0
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: affected-areas
+    attributes:
+      label: Affected Areas
+      description: Which parts of CC-MCP are affected by this bug? (Check all that apply)
+      options:
+        - label: MCP enable/disable functionality
+        - label: Configuration file handling
+        - label: CLI commands and arguments
+        - label: Error messages and user feedback
+        - label: Installation and setup
+        - label: Integration with Claude Code
+        - label: Documentation or help text
+
+  - type: textarea
+    id: workaround
+    attributes:
+      label: Workaround
+      description: Have you found any temporary workaround for this issue?
+      placeholder: I can work around this by...
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Add any other context about the problem here (screenshots, logs, related issues, etc.).
+      placeholder: Additional information...
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Please confirm you've done the following:
+      options:
+        - label: I have searched existing issues to ensure this isn't a duplicate
+          required: true
+        - label: I have included all relevant information above
+          required: true
+        - label: I have removed any sensitive information from logs/configs
+          required: true

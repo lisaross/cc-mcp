@@ -1,0 +1,121 @@
+name: Feature Request
+description: Propose a new feature or enhancement for CC-MCP
+title: "[Feature] "
+labels: ["type:feature", "status:needs-triage"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to suggest a new feature! Please fill out this template to help us understand your request.
+
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Feature Description
+      description: A clear and concise description of the feature you'd like to see implemented.
+      placeholder: Describe the feature you want...
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem-statement
+    attributes:
+      label: Problem Statement
+      description: What problem does this feature solve? What pain point does it address?
+      placeholder: This feature would solve...
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed Solution
+      description: How would you like this feature to work? Include any specific requirements or behavior.
+      placeholder: The feature should work by...
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative Solutions
+      description: Have you considered any alternative approaches or workarounds?
+      placeholder: I've also considered...
+    validations:
+      required: false
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority Level
+      description: How important is this feature to you?
+      options:
+        - Low - Nice to have
+        - Medium - Important for workflow
+        - High - Critical for adoption
+        - Critical - Blocking current usage
+      default: 1
+    validations:
+      required: true
+
+  - type: dropdown
+    id: complexity
+    attributes:
+      label: Estimated Complexity
+      description: How complex do you think this feature might be to implement?
+      options:
+        - XS - Very simple change
+        - S - Small feature addition
+        - M - Standard feature implementation
+        - L - Complex feature requiring design
+        - XL - Major feature spanning multiple areas
+        - Unknown - Not sure about complexity
+      default: 5
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: feature-areas
+    attributes:
+      label: Feature Areas
+      description: Which areas of CC-MCP does this feature relate to? (Check all that apply)
+      options:
+        - label: Core MCP management functionality
+        - label: Security and vulnerability checking
+        - label: User experience and CLI interface
+        - label: Documentation and help system
+        - label: Configuration and setup
+        - label: Performance and reliability
+        - label: Integration with external tools
+
+  - type: textarea
+    id: use-cases
+    attributes:
+      label: Use Cases
+      description: Describe specific scenarios where this feature would be used.
+      placeholder: |
+        1. As a developer, I would use this when...
+        2. As a team lead, this would help me...
+        3. In my daily workflow, this would...
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Add any other context, screenshots, mockups, or examples that would help us understand this feature.
+      placeholder: Additional information, links, examples...
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      description: Would you be interested in contributing to this feature?
+      options:
+        - label: I'd be willing to help implement this feature
+        - label: I'd be available for testing and feedback
+        - label: I can provide domain expertise or requirements clarification
