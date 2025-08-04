@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📚 Documentation
+    url: https://github.com/lisaross/cc-mcp/tree/main/docs
+    about: Check our documentation for usage guides and troubleshooting
+  - name: 💬 Discussions
+    url: https://github.com/lisaross/cc-mcp/discussions
+    about: Ask questions, share ideas, or discuss CC-MCP with the community
+  - name: 🔒 Security Issues
+    url: https://github.com/lisaross/cc-mcp/security/advisories/new
+    about: Report security vulnerabilities privately (do not use public issues)

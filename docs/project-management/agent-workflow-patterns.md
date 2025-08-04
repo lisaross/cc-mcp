@@ -7,12 +7,14 @@ This document outlines how to chain Claude Code agents for efficient project man
 ## Available Agents
 
 ### Core PM Agents Created
+
 1. **epic-breakdown-agent** - Converts large features into epic → story → task hierarchies
 2. **user-story-agent** - Creates high-quality user stories with acceptance criteria
 3. **github-issues-agent** - Formats and creates GitHub issues with proper metadata
 4. **changelog-agent** - Generates release notes from completed GitHub issues/PRs
 
 ### Existing Claude Code Agents
+
 - **project-coordinator** - Shape Up methodology and sprint planning
 - **feature-developer** - Implements features from stories/specifications
 - **automation-builder** - Creates GitHub Actions and workflow automation
@@ -24,6 +26,7 @@ This document outlines how to chain Claude Code agents for efficient project man
 **Enhanced Chain**: `epic-breakdown-agent` → `batch-story-generator-agent` → **PARALLEL** `github-issues-agent`
 
 **Process**:
+
 ```
 1. Start: Multiple features from roadmap phase (e.g., "Phase 1.1 Public Release")
 2. epic-breakdown-agent: Break complex features into epics, stories, and tasks (if needed)
@@ -33,6 +36,7 @@ This document outlines how to chain Claude Code agents for efficient project man
 ```
 
 **Example Commands**:
+
 ```bash
 # Step 1: Break down complex features (if needed)
 "Use epic-breakdown-agent to break down the Phase 2 Security & Recovery features from our roadmap"
@@ -48,6 +52,7 @@ This document outlines how to chain Claude Code agents for efficient project man
 ```
 
 **Advantages**:
+
 - ✅ **10x Faster**: Parallel issue creation vs. sequential
 - ✅ **Quality Gate**: Human review of all stories before GitHub
 - ✅ **Consistency**: All stories generated with same context and standards
@@ -61,6 +66,7 @@ This document outlines how to chain Claude Code agents for efficient project man
 **Use When**: Single feature or simple requirements that don't need batch processing
 
 **Process**:
+
 ```
 1. Start: Single feature from roadmap
 2. user-story-agent: Convert to proper user story format with acceptance criteria
@@ -72,6 +78,7 @@ This document outlines how to chain Claude Code agents for efficient project man
 **Chain**: `github-issues-agent` → Development → `changelog-agent`
 
 **Process**:
+
 ```
 1. Issues created and assigned to milestone
 2. Development work completed (PRs merged, issues closed)
@@ -79,6 +86,7 @@ This document outlines how to chain Claude Code agents for efficient project man
 ```
 
 **Example Commands**:
+
 ```bash
 # After development work is complete
 "Use changelog-agent to generate release notes for CC-MCP v1.1 from completed GitHub issues and PRs"
@@ -89,6 +97,7 @@ This document outlines how to chain Claude Code agents for efficient project man
 **Chain**: `epic-breakdown-agent` → `project-coordinator` → `feature-developer`
 
 **Process**:
+
 ```
 1. epic-breakdown-agent: Break down features for upcoming sprint
 2. project-coordinator: Apply Shape Up methodology for sprint planning
@@ -100,16 +109,19 @@ This document outlines how to chain Claude Code agents for efficient project man
 ### ⚠️ Agent Handoff Requirements
 
 **epic-breakdown-agent → user-story-agent**:
+
 - Input: Epic breakdown with stories and estimates
 - Output format: Clear story descriptions ready for user story formatting
 - Handoff note: "These stories need user story formatting with acceptance criteria"
 
 **user-story-agent → github-issues-agent**:
+
 - Input: Complete user stories with acceptance criteria
 - Output format: User stories in structured format ready for GitHub
 - Handoff note: "These user stories need GitHub issues created with Phase X milestone"
 
 **Development completion → changelog-agent**:
+
 - Input: Completed GitHub milestone with closed issues/PRs
 - Context needed: Version number, release date, target audience
 - Handoff note: "Generate changelog for v1.X release from this milestone"
@@ -117,21 +129,25 @@ This document outlines how to chain Claude Code agents for efficient project man
 ## Best Practices
 
 ### 1. Sequential Processing
+
 - Complete each agent's work fully before moving to the next
 - Validate output quality at each step
 - Use clear handoff instructions between agents
 
 ### 2. Context Preservation
+
 - Save intermediate outputs as documentation
 - Reference previous agent work when chaining
 - Maintain traceability from roadmap to implementation
 
 ### 3. Quality Gates
+
 - Review epic breakdowns for completeness before story creation
 - Validate user stories against INVEST criteria before GitHub issue creation
 - Verify GitHub issues have proper labels/milestones before development
 
 ### 4. Batch Processing
+
 - Process related features together for consistency
 - Create all issues for a milestone in a single session
 - Generate changelogs for complete releases, not partial work
@@ -139,6 +155,7 @@ This document outlines how to chain Claude Code agents for efficient project man
 ## Workflow Templates
 
 ### Template: Batch + Parallel Feature Processing (Recommended)
+
 ```
 1. "Use batch-story-generator-agent to process these [PHASE/EPIC] features from our roadmap into a structured user stories file"
    
@@ -152,6 +169,7 @@ This document outlines how to chain Claude Code agents for efficient project man
 ```
 
 ### Template: Single Feature Processing (Simple Cases)
+
 ```
 1. "Use user-story-agent to convert this [FEATURE] from our roadmap into a proper user story with acceptance criteria"
    
@@ -159,6 +177,7 @@ This document outlines how to chain Claude Code agents for efficient project man
 ```
 
 ### Template: Release Notes Generation
+
 ```
 1. "Use changelog-agent to generate release notes for CC-MCP v[VERSION] from the completed [MILESTONE] milestone"
    
@@ -171,6 +190,7 @@ This document outlines how to chain Claude Code agents for efficient project man
 ## Success Metrics
 
 ### Batch + Parallel Workflow
+
 - **Efficiency**: Complete roadmap phase → GitHub issues in under 15 minutes
 - **Throughput**: 10+ issues created simultaneously vs. sequential processing
 - **Quality**: All user stories meet INVEST criteria consistently
@@ -179,6 +199,7 @@ This document outlines how to chain Claude Code agents for efficient project man
 - **Review Gate**: 100% human validation of stories before GitHub issue creation
 
 ### Legacy Sequential Workflow
+
 - **Efficiency**: Single roadmap feature → GitHub issue in under 5 minutes
 - **Quality**: User stories meet INVEST criteria consistently
 
