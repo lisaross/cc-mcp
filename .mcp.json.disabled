@@ -1,5 +1,15 @@
 {
   "mcpServers": {
+    "github": {
+      "command": "bunx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PAT}"
+      }
+    },
     "coderabbitai": {
       "command": "bunx",
       "args": [
@@ -8,6 +18,12 @@
       "env": {
         "GITHUB_PAT": "${GITHUB_PAT}"
       }
+    },
+    "playwright": {
+      "command": "bunx",
+      "args": [
+        "@playwright/mcp@latest"
+      ]
     },
     "cloudflare": {
       "command": "bunx",
@@ -101,12 +117,14 @@
       }
     },
     "mailgun": {
-      "command": "node",
+      "command": "bunx",
       "args": [
-        "/path/to/mailgun-mcp-server/src/mailgun-mcp.js"
+        "-y",
+        "@mailgun/mcp-server"
       ],
       "env": {
-        "MAILGUN_API_KEY": "${MAILGUN_API_KEY}"
+        "MAILGUN_API_KEY": "${MAILGUN_API_KEY}",
+        "MAILGUN_DOMAIN": "${MAILGUN_DOMAIN}"
       }
     },
     "zapier": {

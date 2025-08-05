@@ -137,10 +137,11 @@ class SimpleMCPManager {
             },
           },
           mailgun: {
-            command: "node",
-            args: ["/path/to/mailgun-mcp-server/src/mailgun-mcp.js"],
+            command: "bunx",
+            args: ["-y", "@mailgun/mcp-server"],
             env: {
               MAILGUN_API_KEY: "${MAILGUN_API_KEY}",
+              MAILGUN_DOMAIN: "${MAILGUN_DOMAIN}",
             },
           },
           zapier: {
