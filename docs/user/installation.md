@@ -54,7 +54,7 @@ cc-mcp init
 
 # This creates:
 # - mcp.json with filesystem enabled
-# - mcp.json.disabled with 6 common MCPs ready to configure
+# - mcp.json.disabled with 22 popular MCPs ready to configure
 ```
 
 ## Example Usage
@@ -64,18 +64,20 @@ cc-mcp init
 ```bash
 $ cc-mcp list
 Creating mcp.json with default configuration...
-Creating mcp.json.disabled with example configurations...
+Creating mcp.json.disabled with 22 popular MCP servers ready to configure...
 
   Status      Name          Command
   ✓ enabled   filesystem    bunx
-  ✗ disabled  anthropic     bunx
   ✗ disabled  github        bunx
-  ✗ disabled  google_drive  bunx
-  ✗ disabled  postgres      bunx
-  ✗ disabled  slack         bunx
-  ✗ disabled  sqlite        bunx
+  ✗ disabled  coderabbitai  bunx
+  ✗ disabled  playwright    bunx
+  ✗ disabled  cloudflare    bunx
+  ✗ disabled  notion        bunx
+  ✗ disabled  supabase      bunx
+  ✗ disabled  airtable      bunx
+  ... and 14 more popular MCPs
 
-  Example: bunx, bun x, npx, node, python, etc.
+  Popular categories: Development, Cloud & Infrastructure, AI & Analysis
 ```
 
 ### Basic Commands
