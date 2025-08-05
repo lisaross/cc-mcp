@@ -1,14 +1,14 @@
 {
   "mcpServers": {
     "filesystem": {
-      "command": "npx",
+      "command": "bunx",
       "args": [
         "@modelcontextprotocol/server-filesystem",
         "./"
       ]
     },
     "github": {
-      "command": "npx",
+      "command": "bunx",
       "args": [
         "-y",
         "@modelcontextprotocol/server-github"
@@ -17,14 +17,11 @@
         "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PAT}"
       }
     },
-    "coderabbitai": {
-      "command": "npx",
+    "playwright": {
+      "command": "bunx",
       "args": [
-        "coderabbitai-mcp@latest"
-      ],
-      "env": {
-        "GITHUB_PAT": "${GITHUB_PAT}"
-      }
+        "@playwright/mcp@latest"
+      ]
     }
   }
 }

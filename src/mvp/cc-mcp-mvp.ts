@@ -42,17 +42,173 @@ class SimpleMCPManager {
     if (!await this.fileExists(this.disabledFile)) {
       const disabledConfig: MCPConfig = {
         mcpServers: {
+          // Core Development Tools
           github: {
             command: "bunx",
-            args: ["@modelcontextprotocol/server-github"],
+            args: ["-y", "@modelcontextprotocol/server-github"],
             env: {
-              GITHUB_PERSONAL_ACCESS_TOKEN: "${GITHUB_PERSONAL_ACCESS_TOKEN}",
+              GITHUB_PERSONAL_ACCESS_TOKEN: "${GITHUB_PAT}",
+            },
+          },
+          coderabbitai: {
+            command: "bunx",
+            args: ["coderabbitai-mcp@latest"],
+            env: {
+              GITHUB_PAT: "${GITHUB_PAT}",
+            },
+          },
+          playwright: {
+            command: "bunx",
+            args: ["@playwright/mcp@latest"],
+          },
+          
+          // Cloud & Infrastructure
+          cloudflare: {
+            command: "bunx",
+            args: ["@cloudflare/mcp-server-cloudflare"],
+            env: {
+              CLOUDFLARE_API_TOKEN: "${CLOUDFLARE_API_TOKEN}",
+            },
+          },
+          convex: {
+            command: "bunx",
+            args: ["convex", "mcp"],
+            env: {
+              CONVEX_DEPLOYMENT: "${CONVEX_DEPLOYMENT}",
+            },
+          },
+          supabase: {
+            command: "bunx",
+            args: [
+              "-y", 
+              "@supabase/mcp-server-supabase@latest",
+              "--read-only",
+              "--project-ref=${SUPABASE_PROJECT_REF}"
+            ],
+            env: {
+              SUPABASE_ACCESS_TOKEN: "${SUPABASE_ACCESS_TOKEN}",
+            },
+          },
+          neon: {
+            command: "bunx",
+            args: ["-y", "@neondatabase/mcp-server-neon@latest"],
+            env: {
+              NEON_API_KEY: "${NEON_API_KEY}",
+            },
+          },
+          neo4j: {
+            command: "bunx",
+            args: ["@alanse/mcp-neo4j-server"],
+            env: {
+              NEO4J_URI: "bolt://localhost:7687",
+              NEO4J_USERNAME: "neo4j",
+              NEO4J_PASSWORD: "${NEO4J_PASSWORD}",
+            },
+          },
+          
+          // Content & Communication
+          firecrawl: {
+            command: "bunx",
+            args: ["-y", "firecrawl-mcp"],
+            env: {
+              FIRECRAWL_API_KEY: "${FIRECRAWL_API_KEY}",
+            },
+          },
+          notion: {
+            command: "bunx",
+            args: ["@modelcontextprotocol/server-notion"],
+            env: {
+              NOTION_API_KEY: "${NOTION_API_KEY}",
+            },
+          },
+          airtable: {
+            command: "bunx",
+            args: ["-y", "airtable-mcp-server"],
+            env: {
+              AIRTABLE_API_KEY: "${AIRTABLE_API_KEY}",
+            },
+          },
+          twilio: {
+            command: "bunx",
+            args: ["@twilio/mcp-server"],
+            env: {
+              TWILIO_ACCOUNT_SID: "${TWILIO_ACCOUNT_SID}",
+              TWILIO_AUTH_TOKEN: "${TWILIO_AUTH_TOKEN}",
+            },
+          },
+          mailgun: {
+            command: "node",
+            args: ["/path/to/mailgun-mcp-server/src/mailgun-mcp.js"],
+            env: {
+              MAILGUN_API_KEY: "${MAILGUN_API_KEY}",
+            },
+          },
+          zapier: {
+            command: "bunx",
+            args: ["@zapier/mcp-server"],
+            env: {
+              ZAPIER_API_KEY: "${ZAPIER_API_KEY}",
+            },
+          },
+          
+          // AI & Analysis
+          perplexity: {
+            command: "bunx",
+            args: ["-y", "server-perplexity-ask"],
+            env: {
+              PERPLEXITY_API_KEY: "${PERPLEXITY_API_KEY}",
+            },
+          },
+          elevenlabs: {
+            command: "uvx",
+            args: ["elevenlabs-mcp"],
+            env: {
+              ELEVENLABS_API_KEY: "${ELEVENLABS_API_KEY}",
+            },
+          },
+          bright_data: {
+            command: "bunx",
+            args: ["@brightdata/mcp-server"],
+            env: {
+              BRIGHT_DATA_API_KEY: "${BRIGHT_DATA_API_KEY}",
+            },
+          },
+          sentry: {
+            command: "bunx",
+            args: ["@sentry/mcp-server"],
+            env: {
+              SENTRY_API_TOKEN: "${SENTRY_API_TOKEN}",
+            },
+          },
+          chart: {
+            command: "bunx",
+            args: ["@bmacharajun/chart-mcp"],
+            env: {
+              CHART_OPTIONS: "default",
+            },
+          },
+          context7: {
+            command: "bunx",
+            args: ["-y", "@upstash/context7-mcp@latest"],
+          },
+          supadata: {
+            command: "bunx",
+            args: ["-y", "supadata-mcp"],
+            env: {
+              SUPADATA_API_KEY: "${SUPADATA_API_KEY}",
+            },
+          },
+          toolbox_databases: {
+            command: "bunx",
+            args: ["@mcptools/mcp-toolbox-databases"],
+            env: {
+              DATABASE_CONNECTION: "${DATABASE_CONNECTION}",
             },
           },
         },
       };
       await this.writeConfig(this.disabledFile, disabledConfig);
-      console.log("✓ Created .mcp.json.disabled with github MCP example");
+      console.log("✓ Created .mcp.json.disabled with 22 popular MCP servers ready to configure");
     }
   }
 
