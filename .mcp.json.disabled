@@ -207,6 +207,10 @@
       "env": {
         "DATABASE_CONNECTION": "${DATABASE_CONNECTION}"
       }
+    },
+    "RepoPrompt": {
+      "command": "/Users/focus/RepoPrompt/repoprompt_cli",
+      "args": []
     }
   }
 }
