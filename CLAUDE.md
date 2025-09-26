@@ -106,6 +106,7 @@ cc-mcp/
 │   └── reference/               # Reference materials
 ├── examples/
 │   └── configs/                 # Sample MCP configurations
+├── install.sh                   # One-command installation script
 ├── deno.json                    # Deno configuration
 └── CLAUDE.md                    # This file
 ```
@@ -201,7 +202,8 @@ Successfully delivered CC-MCP Phase 1.1 using **parallel agent execution with gi
 **✅ Business Value Delivered:**
 - **Public Repository**: https://github.com/lisaross/cc-mcp
 - **v1.0.0 Release**: Tagged and installable
-- **Installation Command**: `deno install --global --allow-read --allow-write --name cc-mcp --force https://raw.githubusercontent.com/lisaross/cc-mcp/main/src/mvp/cc-mcp-mvp.ts`
+- **One-Command Installation**: `curl -fsSL https://raw.githubusercontent.com/lisaross/cc-mcp/main/install.sh | sh`
+- **Manual Installation**: `deno install --global --allow-read --allow-write --name cc-mcp --force https://raw.githubusercontent.com/lisaross/cc-mcp/main/src/mvp/cc-mcp-mvp.ts`
 
 **✅ Workflow Innovation Validated:**
 - **Parallel Agent Execution**: 4 agents working simultaneously in git worktrees
@@ -233,11 +235,11 @@ git worktree add worktrees/release-validation feature/release-validation
 - **Agent 3**: Documentation (knowledge-worker)
 - **Agent 4**: Release & Testing (feature-developer)
 
-### Phase 1.2 Future Enhancements (Ready for Implementation)
+### Phase 1.2 Enhancements (In Progress)
 
 - **Issue #14**: Research Deno Land Registry (1 pt)
 - **Issue #15**: Submit to Deno Land Registry (1 pt)  
-- **Issue #16**: Create Installation Script (1 pt)
+- ✅ **Issue #16**: Create Installation Script (1 pt) - **COMPLETED**
 
 ### Workflow Integration Notes for Future Development
 
