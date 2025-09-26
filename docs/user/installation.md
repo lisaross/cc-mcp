@@ -25,13 +25,27 @@ API keys, custom paths, and arguments. CC-MCP solves this by:
 
 ## Quick Install
 
-### Option 1: Direct from URL (once published)
+### Option 1: One-Command Installation (Recommended)
+
+```bash
+# One-command installation with automatic setup
+curl -fsSL https://raw.githubusercontent.com/lisaross/cc-mcp/main/install.sh | sh
+```
+
+This installation script will:
+- Check for Deno and provide install instructions if missing
+- Configure your PATH automatically  
+- Install CC-MCP globally
+- Verify the installation works
+- Show quick start instructions
+
+### Option 2: Direct from URL
 
 ```bash
 deno install --allow-read --allow-write --name cc-mcp https://raw.githubusercontent.com/lisaross/cc-mcp/main/src/mvp/cc-mcp-mvp.ts
 ```
 
-### Option 2: Local Development
+### Option 3: Local Development
 
 ```bash
 # Clone/create the project

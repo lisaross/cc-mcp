@@ -18,7 +18,21 @@ CC-MCP moves MCP configurations between `mcp.json` (enabled) and `mcp.json.disab
 
 ## Installation
 
-### Global Installation (Recommended)
+### Quick Install (Recommended)
+
+```bash
+# One-command installation
+curl -fsSL https://raw.githubusercontent.com/lisaross/cc-mcp/main/install.sh | sh
+```
+
+This script will:
+- Check for Deno installation (and help install if missing)
+- Configure PATH automatically
+- Install CC-MCP globally
+- Verify the installation
+- Show quick start instructions
+
+### Manual Installation
 
 ```bash
 # Clone the repository
