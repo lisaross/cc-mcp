@@ -126,7 +126,6 @@ check_deno_installation() {
         return 1
     fi
     
-    DENO_INSTALLED=true
     success "Deno $deno_version is installed and meets requirements"
 }
 
@@ -176,9 +175,11 @@ configure_path() {
             ;;
     esac
     
-    echo "" >> "$SHELL_CONFIG_FILE"
-    echo "# Added by CC-MCP installer" >> "$SHELL_CONFIG_FILE"
-    echo "$path_export" >> "$SHELL_CONFIG_FILE"
+    {
+        echo ""
+        echo "# Added by CC-MCP installer"
+        echo "$path_export"
+    } >> "$SHELL_CONFIG_FILE"
     
     PATH_UPDATED=true
     success "Added Deno to PATH in $SHELL_CONFIG_FILE"
